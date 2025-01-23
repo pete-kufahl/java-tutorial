@@ -13,7 +13,7 @@ import java.util.Optional;
 class CourseJdbcRepository implements CourseRepository {
 
     private static final String H2_DATABASE_URL =
-            "jdbc:h2:file:%s;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM './db_init.sql'";
+            "jdbc:h2:file:./courses.db;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM './db_init.sql'";
 
     private static final String INSERT_COURSE = """
             MERGE INTO Courses (id, name, length, url)

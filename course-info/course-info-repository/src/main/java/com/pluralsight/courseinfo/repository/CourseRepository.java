@@ -8,4 +8,9 @@ public interface CourseRepository {
     void saveCourse(Course course);
 
     List<Course> getAllCourses();
+
+    // static factory method
+    static CourseRepository openCourseRepository(String databaseFile) {
+        return new CourseJdbcRepository(databaseFile);
+    }
 }
