@@ -1,5 +1,6 @@
 package com.pluralsight.courseinfo.cli;
 
+import com.pluralsight.courseinfo.cli.service.CourseRetrievalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,5 +22,8 @@ public class CourseRetriever {
 
     private static void retrieveCourses(String authorId) {
         LOG.info("Looking up course for author: '{}'", authorId);
+        CourseRetrievalService courseRetrievalService = new CourseRetrievalService();
+        String coursesToStore = courseRetrievalService.getCoursesFor(authorId);
+        LOG.info("Retrieved the following courses: '{}'", coursesToStore);
     }
 }
