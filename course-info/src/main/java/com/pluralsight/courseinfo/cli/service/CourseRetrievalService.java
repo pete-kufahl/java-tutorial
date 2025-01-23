@@ -10,7 +10,10 @@ public class CourseRetrievalService {
 
     private static final String PS_URI = "https://app.pluralsight.com/profile/data/author/%s/all-content";
 
-    private static final HttpClient CLIENT = HttpClient.newHttpClient();
+    private static final HttpClient CLIENT = HttpClient
+            .newBuilder()
+            .followRedirects(HttpClient.Redirect.ALWAYS)
+            .build();
 
     public String getCoursesFor(String authorId) {
         HttpRequest request = HttpRequest
@@ -19,7 +22,11 @@ public class CourseRetrievalService {
                 .build();
         try {
             HttpResponse<String> response = CLIENT.send(request, HttpResponse.BodyHandlers.ofString());
-            return response.body();
+            return switch(response.statusCode()) {
+                case 200 -> response.body();
+                case 404 -> "";
+                default -> throw new RuntimeException("PluralSight API failed with code: " + response.statusCode());
+            };
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException("Could not get PluralSight API", e);
         }
