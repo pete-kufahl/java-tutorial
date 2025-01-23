@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class CourseJdbcRepository implements CourseRepository {
+class CourseJdbcRepository implements CourseRepository {
 
     private static final String H2_DATABASE_URL =
             "jdbc:h2:file:%s;AUTO_SERVER=TRUE;INIT=RUNSCRIPT FROM './db_init.sql'";
