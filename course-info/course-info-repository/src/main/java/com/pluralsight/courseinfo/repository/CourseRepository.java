@@ -5,7 +5,7 @@ import com.pluralsight.courseinfo.domain.Course;
 import java.util.List;
 
 public interface CourseRepository {
-    void SaveCourse(Course course);
+    void saveCourse(Course course);
 
     List<Course> getAllCourses();
 }

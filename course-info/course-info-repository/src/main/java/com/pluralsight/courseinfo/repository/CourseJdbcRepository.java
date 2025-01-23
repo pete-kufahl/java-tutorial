@@ -34,7 +34,7 @@ class CourseJdbcRepository implements CourseRepository {
     }
 
     @Override
-    public void SaveCourse(Course course) {
+    public void saveCourse(Course course) {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(INSERT_COURSE);
             statement.setString(1, course.id());
