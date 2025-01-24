@@ -9,6 +9,8 @@ public interface CourseRepository {
 
     List<Course> getAllCourses();
 
+    void addNotes(String id, String notes);
+
     // static factory method
     static CourseRepository openCourseRepository(String databaseFile) {
         return new CourseJdbcRepository(databaseFile);
