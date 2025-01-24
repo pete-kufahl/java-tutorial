@@ -1,7 +1,7 @@
 # java-tutorial
 tutorial project for java SE 17
 
-## demonstrates
+## demonstrates:
 * standalone application built with core java + libraries
 * maven
 * jackson
@@ -10,7 +10,7 @@ tutorial project for java SE 17
 * junit
 * modern java language features
 
-## to build:
+## features:
 * course information api - REST
   * list courses: localhost:8080/courses
   * allow addition of notes
