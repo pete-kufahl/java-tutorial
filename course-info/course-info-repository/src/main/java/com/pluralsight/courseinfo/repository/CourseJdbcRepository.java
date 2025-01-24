@@ -68,4 +68,16 @@ class CourseJdbcRepository implements CourseRepository {
             throw new RepositoryException("failed to retrieve courses", e);
         }
     }
+
+    @Override
+    public void addNotes(String id, String notes) {
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement(ADD_NOTES);
+            statement.setString(1, notes);
+            statement.setString(2, id);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new RepositoryException("failed to add notes to " + id, e);
+        }
+    }
 }
