@@ -24,7 +24,9 @@ public class CourseServer {
     private static final String BASE_URI = "http://localhost:8080/";
 
     /*
-    can run standalone .jar with all dependencies:
+    remake jar
+    > mvn clean verify
+    run standalone .jar with all dependencies:
     > java -jar course-info-server/target/course-info-server-1.0-SNAPSHOT.jar
      */
     public static void main(String... args) {
