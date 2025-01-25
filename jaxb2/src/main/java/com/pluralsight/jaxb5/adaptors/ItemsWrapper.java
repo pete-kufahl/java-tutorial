@@ -13,6 +13,7 @@ public class ItemsWrapper {
         this.items = items;
     }
 
+    // names of the elements in the xml --> "item"
     @XmlElement(name = "item")
     public List<ItemValue> getItems() { return items; }
 

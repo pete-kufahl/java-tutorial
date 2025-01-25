@@ -18,6 +18,7 @@ public class PurchaseOrder {
     @XmlAttribute
     private Date orderDate;
 
+    // jaxb calls ItemsAdaptor.marshall() to translate map into wrapper object, which is then marshalled
     @XmlJavaTypeAdapter(ItemsAdaptor.class)
     private Map<String, Item> items;
 
