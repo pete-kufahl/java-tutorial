@@ -1,12 +1,13 @@
-package com.pluralsight.jaxb;
+package com.pluralsight.jaxb1;
 
-import com.pluralsight.jaxb.domain.Customer;
-import com.pluralsight.jaxb.domain.Item;
+import com.pluralsight.jaxb1.domain.Customer;
+import com.pluralsight.jaxb1.domain.Item;
+
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 
-import com.pluralsight.jaxb.domain.PurchaseOrder;
+import com.pluralsight.jaxb1.domain.PurchaseOrder;
 
 import java.util.Arrays;
 

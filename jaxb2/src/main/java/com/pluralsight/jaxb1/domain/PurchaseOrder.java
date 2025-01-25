@@ -1,4 +1,4 @@
-package com.pluralsight.jaxb.domain;
+package com.pluralsight.jaxb1.domain;
 import jakarta.xml.bind.annotation.*;
 import java.util.List;
 
