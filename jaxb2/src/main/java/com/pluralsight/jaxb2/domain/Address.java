@@ -4,7 +4,7 @@ public class Address {
     private String street;
     private String city;
     private String postalCode;
-    private String country;
+    private Country country;
 
     public String getStreet() {
         return street;
@@ -30,11 +30,11 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
 }

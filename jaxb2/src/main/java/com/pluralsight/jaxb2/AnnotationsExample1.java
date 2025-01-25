@@ -58,6 +58,13 @@ public class AnnotationsExample1 {
 
         purchaseOrder.setItems(List.of(item1, item2));
 
+        var customer = createCustomer();
+        purchaseOrder.setCustomer(customer);
+
+        return purchaseOrder;
+    }
+
+    private static Customer createCustomer() {
         var customer = new Customer();
         customer.setName("George the Buyer");
 
@@ -65,14 +72,14 @@ public class AnnotationsExample1 {
         address.setStreet("12 Main Street");
         address.setCity("Waukegan, IL");
         address.setPostalCode("60087");
-        address.setCountry("USA");
+        var country = new Country();
+        country.setCode("USA");
+        country.setName("United States of America");
+        address.setCountry(country);
 
         customer.setShippingAddress(address);
         customer.setBillingAddress(address);
         customer.setLoyalty(Loyalty.SILVER);
-
-        purchaseOrder.setCustomer(customer);
-
-        return purchaseOrder;
+        return customer;
     }
 }

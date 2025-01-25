@@ -9,7 +9,8 @@ import java.util.List;
 
 @XmlRootElement(name = "order") // => this class or enum maps to an xml element at the root level
 public class PurchaseOrder {
-    @XmlAttribute
+    @XmlAttribute       // => data output as attribute instead of field
+//    @XmlSchemaType(name = "date")   // => print out at date instead of datetime
     private Date orderDate;
 
     private List<Item> items;
