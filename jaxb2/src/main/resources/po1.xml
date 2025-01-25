@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<purchaseOrder>
+    <customer>
+        <name>Alice</name>
+        <email>alice@example.com</email>
+    </customer>
+    <items>
+        <item>
+            <name>Book</name>
+            <price>19.99</price>
+        </item>
+        <item>
+            <name>Pen</name>
+            <price>2.49</price>
+        </item>
+    </items>
+    <totalAmount>22.48</totalAmount>
+</purchaseOrder>
