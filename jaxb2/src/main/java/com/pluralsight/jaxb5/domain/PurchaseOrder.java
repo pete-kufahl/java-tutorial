@@ -1,24 +1,24 @@
-package com.pluralsight.jaxb4.domain;
+package com.pluralsight.jaxb5.domain;
+
+import com.pluralsight.jaxb5.adaptors.ItemsAdaptor;
 
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
-// changes jaxb2 domain so that items are not individually output as <Items/> elements
-// instead, make a map<String,Item> <Items/> and populate it with <Item/>
+// changes jaxb4 domain so that the Map items is displayed in a custom manner
 
 @XmlRootElement(name = "order")
 public class PurchaseOrder {
     @XmlAttribute
     private Date orderDate;
 
-    @XmlElementWrapper(name = "items")  // outputs items as map with <Key/>, <Value/> fields
-    @XmlElement(name = "item")
+    @XmlJavaTypeAdapter(ItemsAdaptor.class)
     private Map<String, Item> items;
 
     private Customer customer;
