@@ -58,6 +58,11 @@ public class ObjectFactoryExample {
         System.out.println("Items:");
         for (Item item : purchaseOrder.getItems()) {
             System.out.println("  - " + item.getProductName() + ": $" + item.getPrice());
+            if (item.getComment() == null) {
+                System.out.println("NO COMMENT");
+            } else {
+                System.out.println(item.getComment().getValue());
+            }
         }
 
         System.out.println("Loyalty: " + purchaseOrder.getCustomer().getLoyalty());
@@ -84,7 +89,9 @@ public class ObjectFactoryExample {
         if (CHOOSE_NIL) {
             JAXBElement<String> comment = fac.createItemComment(null);
             comment.setNil(true);
-            item2.setComment(comment);
+            item2.setComment(comment); // results in the nil element in XML
+        } else {
+            item2.setComment(null); // results in no element in XML
         }
 
         purchaseOrder.setItems(List.of(item1, item2));
