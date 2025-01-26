@@ -10,10 +10,10 @@ This project contains packages that correspond to the lessons in the *Working wi
 * jaxb5 - converting a java Map to an XML List with an Adapter
 
 ### schemaexample packages
-* jaxb6 - generate a ,xsd schema
+* jaxb6 - generate a .xsd schema
 * jaxb7 - marshalling with nillable elements
 * jaxb8 - more control over nillable behavior with ObjectFactory
-
+* jaxb9 - generate java classes from a .xsd schema
 ## caveats
 * this was implemented on Java 17 SE JDK, which does not include JAXB in its standard distribution. JAXB was added as dependencies in maven.
 * the tools schemagen and xjc are apparently no longer readily available
