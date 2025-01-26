@@ -1,9 +1,18 @@
-package com.schemaexample.domain;
+package com.schemaexample.jaxb6.domain;
+
+import jakarta.xml.bind.annotation.XmlElement;
 
 public class Address {
+    @XmlElement(required=true)
     private String street;
+
+    @XmlElement(required=true)
     private String city;
+
+    @XmlElement(required=true)
     private String postalCode;
+
+    @XmlElement(required=true)
     private Country country;
 
     public String getStreet() {

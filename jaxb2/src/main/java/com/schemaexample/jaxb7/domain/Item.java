@@ -1,11 +1,19 @@
-package com.schemaexample.domain;
+package com.schemaexample.jaxb7.domain;
+
+import jakarta.xml.bind.annotation.XmlElement;
 
 import java.math.BigDecimal;
 
 public class Item {
+    @XmlElement(required=true)
     private String productName;
+
+    @XmlElement(required=true)
     private int quantity;
+
+    @XmlElement(required=true)
     private BigDecimal price;
+
     private String comment;
 
     public String getProductName() {

@@ -1,26 +1,23 @@
-package com.schemaexample.domain;
+package com.schemaexample.jaxb7.domain;
 
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlElementWrapper;
-import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
-// changes jaxb2 domain so that items are not individually output as <Items/> elements
-// instead, make a list <Items/> and populate it with <Item/>
-
-@XmlRootElement(name = "order")
+@XmlRootElement
+@XmlType(name = "")     // more convenient to make the root element an anonymous type
 public class PurchaseOrder {
-    @XmlAttribute
+    @XmlAttribute(required=true)
     private Date orderDate;
 
-    @XmlElementWrapper(name = "items")  // outputs list as <Items>..<Item>..<Item>.. without java wrapper class
+    @XmlElementWrapper(name = "items", required=true)  // outputs list as <Items>..<Item>..<Item>.. without java wrapper class
     @XmlElement(name = "item")
     private List<Item> items;
 
+    @XmlElement(required=true)
     private Customer customer;
+
     private String comment;
 
     public Date getOrderDate() { return orderDate; }

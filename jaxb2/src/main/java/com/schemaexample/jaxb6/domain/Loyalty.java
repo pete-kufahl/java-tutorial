@@ -1,4 +1,4 @@
-package com.schemaexample.domain;
+package com.schemaexample.jaxb6.domain;
 
 import jakarta.xml.bind.annotation.XmlEnum;
 import jakarta.xml.bind.annotation.XmlEnumValue;

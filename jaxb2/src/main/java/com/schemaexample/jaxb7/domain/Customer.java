@@ -1,18 +1,20 @@
-package com.schemaexample.domain;
+package com.schemaexample.jaxb7.domain;
 
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 @XmlType(propOrder = {"name", "loyalty", "shippingAddress", "billingAddress"})
 public class Customer {
+    @XmlElement(required=true)
     private String name;
 
-    @XmlElement(name = "shipToAddress")
+    @XmlElement(required=true)
     private Address shippingAddress;
 
-    @XmlElement(name = "billToAddress")
+    @XmlElement(required=true)
     private Address billingAddress;
 
+    @XmlElement(defaultValue = "BRONZE")
     private Loyalty loyalty;
 
     public String getName() {
@@ -45,5 +47,13 @@ public class Customer {
 
     public void setLoyalty(Loyalty loyalty) {
         this.loyalty = loyalty;
+    }
+
+    public String printLoyalty() {
+        return switch(this.loyalty) {
+            case BRONZE -> "Bronze";
+            case SILVER -> "Silver";
+            case GOLD -> "Gold";
+        };
     }
 }

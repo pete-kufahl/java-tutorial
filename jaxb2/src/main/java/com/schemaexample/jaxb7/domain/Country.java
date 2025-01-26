@@ -1,13 +1,13 @@
-package com.schemaexample.domain;
+package com.schemaexample.jaxb7.domain;
 
 import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlValue;
+import jakarta.xml.bind.annotation.XmlElement;
 
 public class Country {
     @XmlAttribute
     private String code;
 
-    @XmlValue   // forces output as simple type (one less level in tree)
+    @XmlElement(required=true)  // forces output as simple type (one less level in tree)
     private String name;
 
 

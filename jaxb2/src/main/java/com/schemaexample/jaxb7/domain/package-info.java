@@ -1,6 +1,6 @@
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlSchemaType(type = Date.class, name = "date")    // output dates as date, not datetime
-package com.schemaexample.domain;
+package com.schemaexample.jaxb7.domain;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
