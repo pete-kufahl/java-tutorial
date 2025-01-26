@@ -1,7 +1,8 @@
-package com.schemaexample.jaxb7;
+package com.schemaexample.jaxb8;
 
-import com.schemaexample.jaxb7.domain.*;
+import com.schemaexample.jaxb8.domain.*;
 import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBElement;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 
@@ -10,22 +11,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-public class MarshallingExample {
-    /**
-     * just commenting out the line that adds loyalty DOES NOT fill in the default value during marshalling
-     * JAXB uses the rules: null --> no XML element
-     *      and: empty element --> default value
-     *  instead, we can just initialize Customer.loyalty with a value
-     *
-     *  making item.comment nillable results in a xsi:nil=true attribute in the place of null (normally it's
-     *   just missing from the xml)
-     *  otherwise, can fill the field with a default value by initializing it
-     */
+public class ObjectFactoryExample {
+    private static final boolean CHOOSE_NIL = false;
+
     public static void main(String[] args) throws JAXBException {
         var purchaseOrder = createPurchaseOrder();
         var context = JAXBContext.newInstance(PurchaseOrder.class);
 
-        var filepath = "src/main/resources/output.xml";
+        var filepath = "src/main/resources/output8.xml";
         marshall(context, purchaseOrder, filepath);
 
         unmarshall(context, filepath);
@@ -66,7 +59,7 @@ public class MarshallingExample {
         for (Item item : purchaseOrder.getItems()) {
             System.out.println("  - " + item.getProductName() + ": $" + item.getPrice());
         }
-        // System.out.println("Total Amount: $" + purchaseOrder.getTotalAmount());
+
         System.out.println("Loyalty: " + purchaseOrder.getCustomer().getLoyalty());
 
     }
@@ -79,12 +72,20 @@ public class MarshallingExample {
         item1.setProductName("ballpoint pen");
         item1.setQuantity(20);
         item1.setPrice(new BigDecimal("8.95"));
-        item1.setComment("blue ink");
+
+        var fac = new ObjectFactory();
+        item1.setComment(fac.createItemComment("blue ink"));
 
         var item2 = new Item();
         item2.setProductName("pencil");
         item2.setQuantity(10);
         item2.setPrice(new BigDecimal("2.95"));
+
+        if (CHOOSE_NIL) {
+            JAXBElement<String> comment = fac.createItemComment(null);
+            comment.setNil(true);
+            item2.setComment(comment);
+        }
 
         purchaseOrder.setItems(List.of(item1, item2));
 
