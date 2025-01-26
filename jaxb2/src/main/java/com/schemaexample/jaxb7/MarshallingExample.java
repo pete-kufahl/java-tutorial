@@ -15,9 +15,14 @@ import java.util.List;
 
 public class MarshallingExample {
     /**
-     * just commenting out the line that adds loyalty DOES NOT fill in the default value
+     * just commenting out the line that adds loyalty DOES NOT fill in the default value during marshalling
      * JAXB uses the rules: null --> no XML element
      *      and: empty element --> default value
+     *  instead, we can just initialize Customer.loyalty with a value
+     *
+     *  making item.comment nillable results in a xsi:nil=true attribute in the place of null (normally it's
+     *   just missing from the xml)
+     *  otherwise, can fill the field with a default value by initializing it
      */
     public static void main(String[] args) throws JAXBException {
         var purchaseOrder = createPurchaseOrder();
@@ -33,8 +38,8 @@ public class MarshallingExample {
         var marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
-        // marshal to file
-        File outputFile = new File("src/main/resources/output.xml");
+        // marshall to file
+        File outputFile = new File(filepath);
         marshaller.marshal(purchaseOrder, outputFile);
 
         System.out.println("XML file created at: " + outputFile.getAbsolutePath());
@@ -42,7 +47,7 @@ public class MarshallingExample {
 
     private static void unmarshall(JAXBContext context, String filepath) throws JAXBException {
         // Specify the path to the generated XML file
-        File xmlFile = new File("src/main/resources/output.xml");
+        File xmlFile = new File(filepath);
 
         if (!xmlFile.exists()) {
             System.out.println("The XML file does not exist. Make sure to run the marshalling program first.");
@@ -55,17 +60,17 @@ public class MarshallingExample {
         // Unmarshal the XML file into a PurchaseOrder object
         var purchaseOrder = (PurchaseOrder) unmarshaller.unmarshal(xmlFile);
 
-        // Print the unmarshalled object to verify correctness
         System.out.println("Customer Name: " + purchaseOrder.getCustomer().getName());
 
         // NullPointerException if loyalty does not have default value
-        System.out.println("This is a " + purchaseOrder.getCustomer().printLoyalty() + " member!");
+        // System.out.println("This is a " + purchaseOrder.getCustomer().printLoyalty() + " member!");
 
         System.out.println("Items:");
         for (Item item : purchaseOrder.getItems()) {
             System.out.println("  - " + item.getProductName() + ": $" + item.getPrice());
         }
         // System.out.println("Total Amount: $" + purchaseOrder.getTotalAmount());
+        System.out.println("Loyalty: " + purchaseOrder.getCustomer().getLoyalty());
 
     }
 

@@ -14,8 +14,8 @@ public class Customer {
     @XmlElement(required=true)
     private Address billingAddress;
 
-    @XmlElement(defaultValue = "BRONZE")
-    private Loyalty loyalty;
+    // @XmlElement(defaultValue = "BRONZE")
+    private Loyalty loyalty = Loyalty.BRONZE;
 
     public String getName() {
         return name;

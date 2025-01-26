@@ -14,7 +14,8 @@ public class Item {
     @XmlElement(required=true)
     private BigDecimal price;
 
-    private String comment;
+    @XmlElement(nillable = true)
+    private String comment = "TEST";
 
     public String getProductName() {
         return productName;
