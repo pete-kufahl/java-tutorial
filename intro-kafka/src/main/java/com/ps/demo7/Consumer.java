@@ -1,4 +1,4 @@
-package com.ps.demo5;
+package com.ps.demo7;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
+
 public class Consumer {
     private static final Logger log = LoggerFactory.getLogger(Consumer.class);
 
@@ -28,7 +29,7 @@ public class Consumer {
         Thread haltedHook = new Thread(consumer::close);
         Runtime.getRuntime().addShutdownHook(haltedHook);
 
-        consumer.subscribe(Collections.singletonList("myorders"));
+        consumer.subscribe(Collections.singletonList("myorders1"));
 
         while (true) {
             ConsumerRecords<String, Double> records = consumer.poll(Duration.ofMillis(100));
