@@ -17,3 +17,4 @@ files and notes corresponding to the demos in the pluralsight course *Getting St
 
 ## java.com.connect
 * demo8: Kafka Connect using a standalone instance and file sink
+* demo9: Connect using a schema registry and Avro precompiler
