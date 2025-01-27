@@ -1,4 +1,4 @@
-# producer/consumer demos with java
+# producer demo with java
 
 ## producer demo
 ### setup kafka, consumer
