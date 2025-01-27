@@ -13,3 +13,26 @@
   * GET /topics -> `[ myorders ]`
   * GET /topics/:topicName with path variable `topicName` = `myorders`
     * returns JSON with config and partition data
+* CLI: get kafka to reassign partitions (to adjust for runtime conditions)
+  * reassignment in a .json file
+  * `kafka-reassign-partitions.sh --bootstrap-server 127.0.0.1:9092 --reassignment-json-file increase_replication.json --execute`
+    * success message (background task) with reassignment data
+* Postman: confirm
+  * GET /topics/:topicName
+    * shows change partition
+* terminal: `docker stop broker-2`
+* CLI: send a message
+  * `kafka-console-producer.sh --bootstrap-server 127.0.0.1:9092 --topic myorders`
+  * enter text (messages)
+* Postman: GET /topics/:topicName
+  * shows broker 2 as `in_sync: false`
+    * vague messaging
+* CLI: create a consumer to show breakage
+  * `kafka-console-consumer.sh --bootstrap-server 127.0.0.1:9092 --topic myorders --from-beginning`
+    * no messages received
+* bring back `broker-2` to show recovery
+  * terminal: `docker compose up -d`
+  * Postman: GET /topics/:topicName
+    * shows brokers in sync across replicas
+  * consumer shows messages
+
