@@ -11,3 +11,5 @@ files and notes corresponding to the demos in the pluralsight course *Getting St
 * demo4: producer protocol with CLI
 
 ## java/.. /producers
+* demo5: reproduce demo4 in java
+* 
