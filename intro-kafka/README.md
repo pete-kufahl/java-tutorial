@@ -13,4 +13,7 @@ files and notes corresponding to the demos in the pluralsight course *Getting St
 ## java.com.ps
 * demo5: Producer in java, one consumer in CLI
 * demo6: Producer in java, multiple consumers in different groups (CLI)
-* 
+* demo7: Producer and Consumer in java
+
+## java.com.connect
+* demo8: Kafka Connect using a standalone instance and file sink
