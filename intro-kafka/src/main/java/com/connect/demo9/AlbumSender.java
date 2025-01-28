@@ -22,11 +22,16 @@ public class AlbumSender {
         Properties props = new Properties();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "http://localhost:9092,http://localhost:9093,http://localhost:9094");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, DoubleSerializer.class.getName());
+
+        // new values for Serializer and Registry
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
         props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+
+        // send a custom Avro object
         Album album = Album.newBuilder()
                 .setName("Use Your Illusion")
-                .setYear(1991).build();
+                .setYear(1991)
+                .build();
         KafkaProducer<Double, Album> producer = new KafkaProducer<>(props);
         double key = Math.floor(Math.random()*(50));
         ProducerRecord<Double, Album> producerRecord =
