@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
-public class AlbumSender {
-    private static final Logger log = LoggerFactory.getLogger(AlbumSender.class);
+public class Sender {
+    private static final Logger log = LoggerFactory.getLogger(Sender.class);
     private static final String TOPIC = "connect-distributed";
 
     public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class AlbumSender {
 
         // send a custom Avro object
         Album album = Album.newBuilder()
-                .setName("Use Your Illusion")
+                .setName("Sample Album")
                 .setYear(1991)
                 .build();
         KafkaProducer<Double, Album> producer = new KafkaProducer<>(props);

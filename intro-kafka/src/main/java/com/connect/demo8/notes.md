@@ -9,9 +9,9 @@
   * LogProducer publishes to connect-log, even though its static constant `TOPIC="connectlog"`
 
 ### create the standalone filesink instance (in demo8/)
-* connect-standalone.sh worker.properties filesink.properties
-  * requires files: worker.properties and filesink.properties
-    * in worker.properties, set plugin path
+* `connect-standalone.sh worker.properties filesink.properties`
+  * requires files: `worker.properties` and `filesink.properties`
+    * in `worker.properties`, set plugin path
   * requires maven plugins (?)
 * check that the file is getting the logs
   * `tail -f file-log.txt`
