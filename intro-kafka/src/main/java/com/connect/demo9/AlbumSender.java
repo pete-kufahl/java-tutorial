@@ -24,6 +24,8 @@ public class AlbumSender {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, DoubleSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
         props.put(KafkaAvroSerializerConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+
+        // send a custom Avro object
         Album album = Album.newBuilder()
                 .setName("Use Your Illusion")
                 .setYear(1991).build();
