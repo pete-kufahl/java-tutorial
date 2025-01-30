@@ -21,4 +21,4 @@ files and notes corresponding to the demos in the pluralsight course *Getting St
 
 ## java.com.streams
 * demo10: Kafka Streams with a filtering application
-* demo11:
+* demo11: ksqlDB demonstration (no java code)
