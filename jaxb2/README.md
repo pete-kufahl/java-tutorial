@@ -18,3 +18,4 @@ This project contains packages that correspond to the lessons in the *Working wi
 * this was implemented on Java 17 SE JDK, which does not include JAXB in its standard distribution. JAXB was added as dependencies in maven.
 * the tools schemagen and xjc are apparently no longer readily available
   * jaxb6 is a workaround for the lack of schemagen
+  * the maven plugin `jaxb2-maven-plugin` replaces xjc
