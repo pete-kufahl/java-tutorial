@@ -18,3 +18,7 @@ files and notes corresponding to the demos in the pluralsight course *Getting St
 ## java.com.connect
 * demo8: Kafka Connect using a standalone instance and file sink
 * demo9: Connect using a schema registry and Avro precompiler
+
+## java.com.streams
+* demo10: Kafka Streams with a filtering application
+* demo11: ksqlDB demonstration (no java code)
