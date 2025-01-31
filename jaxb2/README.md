@@ -16,18 +16,17 @@ This project contains packages that correspond to the lessons in the *Working wi
 * jaxb9 - generate classes from a schema
   * redone with maven plugin and simple .xsd in src/main/resources/
 <details>
-<summary>steps</summary>
+<summary>jaxb9 steps</summary>
 <ul>
   <li>before writing the marshalling and unmarshalling java classes, put the .xsd into the resources/demo9/</li>
   <li><code>mvn clean compile</code></li>
+  <li>copy over the generated classes from the target/... directory, if needed</li>
+  <li>fix the base data type <code>PurchaseOrderType</code> to have a root element: <code>@XmlRootElement(name = "PurchaseOrder")</code></li>
+  <li>write the marshalling and unmarshalling classes</li>
+  <li>marshalling -> generates a target XML file</li>
+  <li>unmarshalling -> populates java objects from the XML file and the generated classes</li>
+  <li>unmarshalling with validation -> uses the .xsd schema to validate the XML before unmarshalling</li>
 </ul>
-
-* copy over the generated classes from the target/... directory, if needed
-* fix the base data type `PurchaseOrderType` to have a root element: `@XmlRootElement(name = "PurchaseOrder")`
-* write the marshalling and unmarshalling classes
-* marshalling -> generates a target XML file
-* unmarshalling -> populates java objects from the XML file and the generated classes
-* unmarshalling with validation -> uses the .xsd schema to validate the XML before unmarshalling
 </details>
 
 ### advanced
