@@ -53,13 +53,20 @@ This project contains packages that correspond to the lessons in the *Working wi
 </details>
 
 * jaxb11 - use Binder to maintain a DOM tree
-  * unmarshal an XML document into a DOM tree
-  * apply some changes to the DOM (e.g., add an element)
-  * bind the modified DOM back to Java objects using the Binder
-    * avoids the `@XmlRootElement` exception: no direct marshalling of the DOM element: We marshal the Java object (`PurchaseOrderType`), which doesn’t require `@XmlRootElement`.
-    * also, the Binder is only used for DOM to Java object transformation
-      * The Binder is applied in this scenario where the XML is being manipulated at the DOM level, and we then convert it to a Java object. This avoids marshalling a DOM element without a root.
-
+<details>
+<summary>steps</summary>
+<ul>
+  <li>unmarshal an XML document into a DOM tree</li>
+  <li>apply some changes to the DOM (e.g., add an element)</li>
+  <li>bind the modified DOM back to Java objects using the Binder
+    <ul>
+      <li>avoids the <code>@XmlRootElement</code> exception: no direct marshalling of the DOM element: We marshal the Java object (<code>PurchaseOrderType</code>), which doesn’t require <code>@XmlRootElement</code>.</li>
+      <li>also, the Binder is only used for DOM to Java object transformation</li>
+      <li>that is, the Binder is applied in this scenario where the XML is being manipulated at the DOM level, and we then convert it to a Java object. This avoids marshalling a DOM element without a root.</li>
+    </ul>
+  </li>
+</ul>
+</details>
 
 ## caveats
 * this was implemented on Java 17 SE JDK, which does not include JAXB in its standard distribution. JAXB was added as dependencies in maven.
