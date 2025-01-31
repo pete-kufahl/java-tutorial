@@ -15,7 +15,7 @@ public class SchemaGenerator {
         context.generateSchema(new SchemaOutputResolver() {
             @Override
             public Result createOutput(String namespaceUri, String suggestedFileName) {
-                File file = new File("schema.xsd");
+                File file = new File("other/schema.xsd");
                 return new StreamResult(file);
             }
         });

@@ -18,7 +18,7 @@ public class UnmarshallingWithValidationExample {
 
             // Load the XSD schema for validation
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = schemaFactory.newSchema(new File("src/main/resources/purchaseOrder.xsd"));
+            Schema schema = schemaFactory.newSchema(new File("src/main/resources/demo9/purchaseOrder.xsd"));
 
             // Set the schema on the unmarshaller for validation
             unmarshaller.setSchema(schema);

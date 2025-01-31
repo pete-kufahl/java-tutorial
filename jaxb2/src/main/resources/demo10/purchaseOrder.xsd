@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/purchase"
+           xmlns:tns="http://example.com/purchase"
+           elementFormDefault="qualified">
+
+    <!-- Root element -->
+    <xs:element name="PurchaseOrder" type="tns:PurchaseOrderType"/>
+
+    <!-- Purchase Order Complex Type -->
+    <xs:complexType name="PurchaseOrderType">
+        <xs:sequence>
+            <xs:element name="customerName" type="xs:string"/>
+            <xs:element name="totalAmount" type="xs:decimal"/>
+            <xs:element name="items" type="tns:ItemsType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Items Complex Type -->
+    <xs:complexType name="ItemsType">
+        <xs:sequence>
+            <xs:element name="item" type="tns:ItemType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Individual Item Complex Type -->
+    <xs:complexType name="ItemType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="price" type="xs:decimal"/>
+            <xs:element name="quantity" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
