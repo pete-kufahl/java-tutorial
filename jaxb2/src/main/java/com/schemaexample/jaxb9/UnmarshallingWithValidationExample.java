@@ -22,12 +22,9 @@ public class UnmarshallingWithValidationExample {
 
             // Set the schema on the unmarshaller for validation
             unmarshaller.setSchema(schema);
-            unmarshaller.setEventHandler(new ValidationEventHandler() {
-                @Override
-                public boolean handleEvent(ValidationEvent event) {
-                    System.out.println("Validation Error: " + event.getMessage());
-                    return false;  // Stop processing if there's an error
-                }
+            unmarshaller.setEventHandler(event -> {
+                System.out.println("Validation Error: " + event.getMessage());
+                return false;  // Stop processing if there's an error
             });
 
             // Unmarshal XML to Java object
