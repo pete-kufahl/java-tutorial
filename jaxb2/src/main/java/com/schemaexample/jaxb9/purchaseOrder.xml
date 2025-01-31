@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PurchaseOrder xmlns="http://example.com/purchase">
+    <orderId>1001</orderId>
+    <customerName>John Doe</customerName>
+    <totalAmount>250.75</totalAmount>
+</PurchaseOrder>

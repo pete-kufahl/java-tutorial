@@ -56,12 +56,12 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <sources>
-                                <source>${project.basedir}/src/main/resources/schema.xsd</source>
+                                <source>${project.basedir}/src/main/resources/PurchaseOrder.xsd</source>
                             </sources>
                             <!-- Output directory for generated Java classes -->
                             <outputDirectory>${project.basedir}/target/generated-sources/jaxb</outputDirectory>
                             <!-- Package name for generated Java classes -->
-                            <packageName>com.schemaexample.jaxb9</packageName>
+                            <packageName>com.schemaexample.jaxb9.domain</packageName>
                         </configuration>
                     </execution>
                 </executions>

@@ -13,7 +13,18 @@ This project contains packages that correspond to the lessons in the *Working wi
 * jaxb6 - generate a .xsd schema
 * jaxb7 - marshalling with nillable elements
 * jaxb8 - more control over nillable behavior with ObjectFactory
-* jaxb9 - generate java classes from a .xsd schema
+* jaxb9 - generate classes from a schema
+  * redone with maven plugin and simple .xsd in src/main/resources/
+  * steps:
+    * before writing the marshalling and unmarshalling java classes,
+    * put the .xsd into the resources/
+    * `mvn clean compile`
+    * copy over the generated classes from the target/... directory, if needed
+    * fix the base data type `PurchaseOrderType` to have a root element: `@XmlRootElement(name = "PurchaseOrder")`
+    * write the marshalling and unmarshalling classes
+    * marshalling -> generates a target XML file
+    * unmarshalling -> populates java objects from the XML file and the generated classes
+    
 ## caveats
 * this was implemented on Java 17 SE JDK, which does not include JAXB in its standard distribution. JAXB was added as dependencies in maven.
 * the tools schemagen and xjc are apparently no longer readily available
