@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PurchaseOrder xmlns="http://example.com/purchase">
+    <customerName>Alice Smith</customerName>
+    <totalAmount>99.99</totalAmount>
+    <items>
+        <item>
+            <name>Laptop Sleeve</name>
+            <price>29.99</price>
+            <quantity>1</quantity>
+        </item>
+        <item>
+            <name>Wireless Mouse</name>
+            <price>49.99</price>
+            <quantity>1</quantity>
+        </item>
+    </items>
+</PurchaseOrder>
