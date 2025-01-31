@@ -17,8 +17,11 @@ This project contains packages that correspond to the lessons in the *Working wi
   * redone with maven plugin and simple .xsd in src/main/resources/
 <details>
 <summary>steps</summary>
-* before writing the marshalling and unmarshalling java classes, put the .xsd into the resources/demo9/
-* `mvn clean compile`
+<ul>
+  <li>before writing the marshalling and unmarshalling java classes, put the .xsd into the resources/demo9/</li>
+  <li><code>mvn clean compile</code></li>
+</ul>
+
 * copy over the generated classes from the target/... directory, if needed
 * fix the base data type `PurchaseOrderType` to have a root element: `@XmlRootElement(name = "PurchaseOrder")`
 * write the marshalling and unmarshalling classes
