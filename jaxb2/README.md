@@ -17,15 +17,14 @@ This project contains packages that correspond to the lessons in the *Working wi
   * redone with maven plugin and simple .xsd in src/main/resources/
 <details>
 <summary>steps</summary>
-1. before writing the marshalling and unmarshalling java classes,
-2. put the .xsd into the resources/demo9/
-3. `mvn clean compile`
-4. copy over the generated classes from the target/... directory, if needed
-5. fix the base data type `PurchaseOrderType` to have a root element: `@XmlRootElement(name = "PurchaseOrder")`
-6. write the marshalling and unmarshalling classes
-7. marshalling -> generates a target XML file
-8. unmarshalling -> populates java objects from the XML file and the generated classes
-9. unmarshalling with validation -> uses the .xsd schema to validate the XML before unmarshalling
+* before writing the marshalling and unmarshalling java classes, put the .xsd into the resources/demo9/
+* `mvn clean compile`
+* copy over the generated classes from the target/... directory, if needed
+* fix the base data type `PurchaseOrderType` to have a root element: `@XmlRootElement(name = "PurchaseOrder")`
+* write the marshalling and unmarshalling classes
+* marshalling -> generates a target XML file
+* unmarshalling -> populates java objects from the XML file and the generated classes
+* unmarshalling with validation -> uses the .xsd schema to validate the XML before unmarshalling
 </details>
 
 ### advanced
