@@ -2,14 +2,14 @@
 This project contains packages that correspond to the lessons in the *Working with XML in Java Using JAXB 2* course on Pluralsight.
 
 ## contents
-### xmlexample packages
+### xml-example
 * jaxb1 - marshalling / unmarshalling using JAXB, StAX
 * jaxb2 - JAXB annotations
 * jaxb3 - dealing with List collections
 * jaxb4 - dealing with Map collections
 * jaxb5 - converting a java Map to an XML List with an Adapter
 
-### schemaexample packages
+### schemaexample
 * jaxb6 - generate a .xsd schema
 * jaxb7 - marshalling with nillable elements
 * jaxb8 - more control over nillable behavior with ObjectFactory
@@ -24,7 +24,10 @@ This project contains packages that correspond to the lessons in the *Working wi
     * write the marshalling and unmarshalling classes
     * marshalling -> generates a target XML file
     * unmarshalling -> populates java objects from the XML file and the generated classes
-    
+    * unmarshalling with validation -> uses the .xsd schema to validate the XML before unmarshalling
+### advanced
+* jaxb10 - 
+
 ## caveats
 * this was implemented on Java 17 SE JDK, which does not include JAXB in its standard distribution. JAXB was added as dependencies in maven.
 * the tools schemagen and xjc are apparently no longer readily available

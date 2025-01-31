@@ -2,7 +2,6 @@ package com.schemaexample.jaxb6.domain;
 
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlElement;
-import jakarta.xml.bind.annotation.XmlValue;
 
 public class Country {
     @XmlAttribute
