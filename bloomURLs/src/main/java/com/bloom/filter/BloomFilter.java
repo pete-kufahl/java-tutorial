@@ -7,6 +7,10 @@ import java.util.function.Function;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ *  a generic Bloom filter class using an efficient hash function and bit array manipulation.
+ *  this class uses bit arrays and multiple hash functions to approximate membership checks.
+ */
 public class BloomFilter<T> {
     private final BitSet bitSet;
     private final int size;
@@ -31,12 +35,21 @@ public class BloomFilter<T> {
         return hashes;
     }
 
+    /**
+     * insert an item
+     * @param item
+     */
     public void add(T item) {
         for (int hash : getHashes(item)) {
             bitSet.set(hash);
         }
     }
 
+    /**
+     * check if an item might be present
+     * @param item
+     * @return
+     */
     public boolean mightContain(T item) {
         for (int hash : getHashes(item)) {
             if (!bitSet.get(hash)) {
@@ -55,10 +68,22 @@ public class BloomFilter<T> {
         }
     }
 
+    /**
+     * computes the best bit array size
+     * @param n
+     * @param p
+     * @return
+     */
     private int optimalBitArraySize(int n, double p) {
         return (int) Math.ceil((-n * Math.log(p)) / (Math.log(2) * Math.log(2)));
     }
 
+    /**
+     * determines the number of hash functions
+     * @param m
+     * @param n
+     * @return
+     */
     private int optimalHashFunctionCount(int m, int n) {
         return (int) Math.ceil(((double) m / n) * Math.log(2));
     }
