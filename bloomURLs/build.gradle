@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
 
-    implementation 'com.google.guava:guava:31.1-jre'  // Ensure to use the latest version
+    implementation 'com.google.guava:guava:32.0.1-android'  // Ensure to use the latest version
 
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
