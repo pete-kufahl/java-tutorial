@@ -7,30 +7,29 @@ import java.util.function.Function;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.google.common.hash.Hashing;
+import java.nio.charset.StandardCharsets;
+
 /**
  *  a generic Bloom filter class using an efficient hash function and bit array manipulation.
  *  this class uses bit arrays and multiple hash functions to approximate membership checks.
  */
 public class BloomFilter<T> {
     private final BitSet bitSet;
-    private final int size;
-    private final int numHashFunctions;
-    private final Function<T, byte[]> hashFunction;
+    private final int m;  // Size of bit array
+    private final int k;  // Number of hash functions
 
-    public BloomFilter(int capacity, double falsePositiveRate) {
-        this.size = optimalBitArraySize(capacity, falsePositiveRate);
-        this.numHashFunctions = optimalHashFunctionCount(size, capacity);
-        this.bitSet = new BitSet(size);
-        this.hashFunction = this::sha256Hash;
+    public BloomFilter(int n, double falsePositiveRate) {
+        this.m = (int) (-n * Math.log(falsePositiveRate) / (Math.pow(Math.log(2), 2)));
+        this.k = (int) Math.round((m / (double) n) * Math.log(2)); // optimal number of hash functions
+        this.bitSet = new BitSet(m);
     }
 
-    private int[] getHashes(T item) {
-        byte[] hashBytes = hashFunction.apply(item);
-        int[] hashes = new int[numHashFunctions];
-
-        for (int i = 0; i < numHashFunctions; i++) {
-            int hash = ((hashBytes[i * 2] & 0xFF) << 8) | (hashBytes[i * 2 + 1] & 0xFF);
-            hashes[i] = Math.abs(hash % size);
+    public int[] getHashes(String key) {
+        int[] hashes = new int[k]; // k is the number of hash functions
+        for (int i = 0; i < k; i++) {
+            // Use MurmurHash3 with the seed `i` to ensure unique hash values
+            hashes[i] = Math.abs(murmurHash(key, i)) % m; // `m` is the size of the bit array
         }
         return hashes;
     }
@@ -40,7 +39,7 @@ public class BloomFilter<T> {
      * @param item
      */
     public void add(T item) {
-        for (int hash : getHashes(item)) {
+        for (int hash : getHashes(item.toString())) {
             bitSet.set(hash);
         }
     }
@@ -51,7 +50,7 @@ public class BloomFilter<T> {
      * @return
      */
     public boolean mightContain(T item) {
-        for (int hash : getHashes(item)) {
+        for (int hash : getHashes(item.toString())) {
             if (!bitSet.get(hash)) {
                 return false;
             }
@@ -68,6 +67,12 @@ public class BloomFilter<T> {
         }
     }
 
+    private int murmurHash(String key, int seed) {
+        return Hashing.murmur3_128(seed)
+                .hashString(key, StandardCharsets.UTF_8)
+                .asInt();
+    }
+
     /**
      * computes the best bit array size
      * @param n
@@ -80,11 +85,27 @@ public class BloomFilter<T> {
 
     /**
      * determines the number of hash functions
+     * made public since it could be useful for tuning.
      * @param m
      * @param n
      * @return
      */
-    private int optimalHashFunctionCount(int m, int n) {
-        return (int) Math.ceil(((double) m / n) * Math.log(2));
+    public int optimalHashFunctionCount(int m, int n) {
+        return (int) Math.ceil((m / n) * Math.log(2));
     }
+
+    public int countBitsSet() {
+        int count = 0;
+        for (int i = 0; i < bitSet.size(); i++) {
+            if (bitSet.get(i)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getSize() {
+        return bitSet.size(); // If using BitSet
+    }
+
 }
