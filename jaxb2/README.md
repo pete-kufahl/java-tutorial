@@ -68,6 +68,8 @@ This project contains packages that correspond to the lessons in the *Working wi
 </ul>
 </details>
 
+### WSDL
+
 ## caveats
 * this was implemented on Java 17 SE JDK, which does not include JAXB in its standard distribution. JAXB was added as dependencies in maven.
 * the tools schemagen and xjc are apparently no longer readily available
