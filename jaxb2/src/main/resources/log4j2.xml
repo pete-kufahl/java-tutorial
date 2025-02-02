@@ -1,0 +1,19 @@
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c{1}:%L - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- Enable detailed Apache CXF logs -->
+        <Logger name="org.apache.cxf" level="DEBUG"/>
+        <Logger name="org.apache.cxf.endpoint.Server" level="DEBUG"/>
+        <Logger name="org.apache.cxf.service.factory.ReflectionServiceFactoryBean" level="DEBUG"/>
+        <Logger name="org.apache.cxf.transport.http.HTTPTransportFactory" level="DEBUG"/>
+        <Logger name="org.apache.cxf.transport.servlet.CXFServlet" level="DEBUG"/>
+
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

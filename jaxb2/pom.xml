@@ -49,12 +49,14 @@
                 <version>3.2.0</version>
                 <executions>
                     <execution>
+
                         <id>generate</id>
                         <goals>
                             <goal>xjc</goal>
                         </goals>
                         <phase>generate-sources</phase>
                         <configuration>
+                            <skipXjc>true</skipXjc>
                             <sources>
                                 <source>${project.basedir}/src/main/resources/demo10/purchaseOrder.xsd</source>
                             </sources>
