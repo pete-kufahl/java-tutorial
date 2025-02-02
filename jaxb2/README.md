@@ -1,5 +1,5 @@
 # JAXB Tutorial
-This project contains packages that correspond to the lessons in the *Working with XML in Java Using JAXB 2* course on Pluralsight.
+This project contains packages that correspond to the lessons in the *Working with XML in Java Using JAXB 2* course on Pluralsight. Due to the differences between the JAXB dependencies over time, and the unavailability of the sample code a public repository, I completely replaced the implementation of the jaxb9, 10 and 11 demos while keeping the themes of the lessons.
 
 ## contents
 ### xml-example
