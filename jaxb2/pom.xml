@@ -39,28 +39,6 @@
             <artifactId>woodstox-core</artifactId>
             <version>6.5.1</version>
         </dependency>
-
-        <!-- WSDL dependencies -->
-        <!-- Jakarta JAX-WS API -->
-        <dependency>
-            <groupId>jakarta.xml.ws</groupId>
-            <artifactId>jakarta.xml.ws-api</artifactId>
-            <version>4.0.0</version>
-        </dependency>
-
-        <!-- Apache CXF Implementation -->
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>4.0.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.cxf</groupId>
-            <artifactId>cxf-rt-transports-http</artifactId>
-            <version>4.0.3</version>
-        </dependency>
-
     </dependencies>
 
     <build>

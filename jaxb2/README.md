@@ -15,6 +15,7 @@ This project contains packages that correspond to the lessons in the *Working wi
 * jaxb8 - more control over nillable behavior with ObjectFactory
 * jaxb9 - generate classes from a schema
   * redone with maven plugin and simple .xsd in src/main/resources/ 
+  * *the plugin behavior can be disabled with the `skipxjc` property inside the `pom.xml`*
 <details>
 <summary>steps</summary>
 <ul>
@@ -69,6 +70,7 @@ This project contains packages that correspond to the lessons in the *Working wi
 </details>
 
 ### WSDL
+* demo abandoned: non-Spring WSDL setup just doesn't seem to work
 
 ## caveats
 * this was implemented on Java 17 SE JDK, which does not include JAXB in its standard distribution. JAXB was added as dependencies in maven.
