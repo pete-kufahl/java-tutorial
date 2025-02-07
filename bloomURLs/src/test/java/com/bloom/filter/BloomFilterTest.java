@@ -8,17 +8,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BloomFilterTest {
-    private BloomFilter<String> bloomFilter;
     private static final int CAPACITY = 1000;
     private static final double FALSE_POSITIVE_RATE = 0.01;
 
-    @BeforeEach
-    void setUp() {
-        bloomFilter = new BloomFilter<>(CAPACITY, FALSE_POSITIVE_RATE);
-    }
-
     @Test
     void testInsertionAndLookup() {
+        var bloomFilter = new BloomFilter<String>(CAPACITY, FALSE_POSITIVE_RATE);
         bloomFilter.add("test.com");
         bloomFilter.add("example.com");
 
@@ -28,13 +23,14 @@ public class BloomFilterTest {
 
     @Test
     void testNonInsertedItem() {
+        var bloomFilter = new BloomFilter<String>(CAPACITY, FALSE_POSITIVE_RATE);
         bloomFilter.add("malicious-site.com");
 
         assertFalse(bloomFilter.mightContain("safe-site.com"), "safe-site.com was never inserted, should return false");
     }
 
     @Test
-    void testFalsePositiveRate() {
+    void testFalsePositiveRate_10k() {
         int testSize = 10000;
         BloomFilter<String> smallBloomFilter = new BloomFilter<>(testSize, 0.05);
 
@@ -57,6 +53,7 @@ public class BloomFilterTest {
 
     @Test
     void testMultipleHashFunctions() {
+        var bloomFilter = new BloomFilter<String>(CAPACITY, FALSE_POSITIVE_RATE);
         int expectedHashes = bloomFilter.optimalHashFunctionCount(1000, 100);
         assertTrue(expectedHashes > 0, "Number of hash functions should be positive");
     }

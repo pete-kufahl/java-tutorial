@@ -2,9 +2,6 @@ package com.bloom.filter;
 
 import java.nio.charset.StandardCharsets;
 import java.util.BitSet;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import com.google.common.hash.Hashing;
 
 /**
@@ -13,8 +10,8 @@ import com.google.common.hash.Hashing;
  */
 public class BloomFilter<T> {
     private final BitSet bitSet;
-    private final int bitArraySize;  // Size of bit array
-    private final int numHashFunctions;  // Number of hash functions
+    private final int bitArraySize;
+    private final int numHashFunctions;
 
     public BloomFilter(int n, double falsePositiveRate) {
         this.bitArraySize = (int) (-n * Math.log(falsePositiveRate) / (Math.pow(Math.log(2), 2)));
@@ -23,10 +20,10 @@ public class BloomFilter<T> {
     }
 
     public int[] getHashes(String key) {
-        int[] hashes = new int[numHashFunctions]; // k is the number of hash functions
+        int[] hashes = new int[numHashFunctions];
         for (int i = 0; i < numHashFunctions; i++) {
             // Use MurmurHash3 with the seed `i` to ensure unique hash values
-            hashes[i] = Math.abs(murmurHash(key, i)) % bitArraySize; // `m` is the size of the bit array
+            hashes[i] = Math.abs(murmurHash(key, i)) % bitArraySize;
         }
         return hashes;
     }
@@ -55,29 +52,10 @@ public class BloomFilter<T> {
         return true;
     }
 
-    private byte[] sha256Hash(T item) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            return digest.digest(item.toString().getBytes(StandardCharsets.UTF_8));
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("SHA-256 not available", e);
-        }
-    }
-
     private int murmurHash(String key, int seed) {
         return Hashing.murmur3_128(seed)
                 .hashString(key, StandardCharsets.UTF_8)
                 .asInt();
-    }
-
-    /**
-     * computes the best bit array size
-     * @param n
-     * @param p
-     * @return
-     */
-    private int optimalBitArraySize(int n, double p) {
-        return (int) Math.ceil((-n * Math.log(p)) / (Math.log(2) * Math.log(2)));
     }
 
     /**
