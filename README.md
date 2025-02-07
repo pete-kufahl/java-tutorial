@@ -10,3 +10,5 @@ tutorials from a pluralsight course for XML processing with JAXB
 ## intro-kafka
 tutorials from a pluralsight course for the Kafka platform
 
+## bloomURLs
+implmentation and demo of a Bloom filter
