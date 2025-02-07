@@ -1,0 +1,4 @@
+malicious-site.com
+phishing-attack.net
+spam-website.org
+bad-actor.co
