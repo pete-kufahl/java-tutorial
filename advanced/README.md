@@ -9,5 +9,6 @@ record class demos
 	* this can create unexpected effects when making a copy of the object
 * **hash** override the `hashCode` and `equals` methods
 	* follow rule that these methods are overridden in tandem
+* **constructor** override constructor
 
 
