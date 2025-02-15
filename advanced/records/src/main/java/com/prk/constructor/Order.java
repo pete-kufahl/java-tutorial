@@ -24,4 +24,8 @@ public record Order(long id, Customer customer, LocalDateTime dateTime, List<Ord
     // - the canonical constructor's access level cannot be more restrictive than that of the record itself
     //      - cannot hide by making it private
     // - cannot throw checked exceptions, but can throw an unchecked exception
+
+    // preference: use compact constructor syntax when overriding the canonical constructor
+
+
 }

@@ -13,4 +13,6 @@ record class demos
 	* could be motivated by a record having a (mutable) container as a field
 	* can also validate inputs to the constructor
 	* compact constructor: eliminate argument list and non-custom assignments
+	* additional constructors must always call the canonical constructor first
+
 
