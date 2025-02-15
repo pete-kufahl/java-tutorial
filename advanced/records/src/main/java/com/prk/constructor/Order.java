@@ -11,15 +11,13 @@ public record Order(long id, Customer customer, LocalDateTime dateTime, List<Ord
     //.  immutability from being broken at runtime
     // also can validate fields at this point (using utility Validation.checkThat() )
 
-    public Order(long id, Customer customer, LocalDateTime dateTime, List<OrderLine> lines) {
+    // remove argument list (and non-customized assignments) to make constructor compact
+    public Order {
         checkThat(customer != null, "customer must not be null");
         checkThat(dateTime != null, "dateTime must not be null");
         checkThat(lines != null && !lines.isEmpty(), "lines must not be null or empty");
 
-        this.id = id;
-        this.customer = customer;
-        this.dateTime = dateTime;
-        this.lines = List.copyOf(lines);    // defensive unmodifiable copy
+        lines = List.copyOf(lines);    // defensive unmodifiable copy
     }
 
     // rules:
