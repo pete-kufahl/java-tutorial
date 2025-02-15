@@ -14,5 +14,6 @@ record class demos
 	* can also validate inputs to the constructor
 	* compact constructor: eliminate argument list and non-custom assignments
 	* additional constructors must always call the canonical constructor first
+	* can add logic with a static factory method
 
 

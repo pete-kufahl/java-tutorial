@@ -27,5 +27,11 @@ public record Order(long id, Customer customer, LocalDateTime dateTime, List<Ord
 
     // preference: use compact constructor syntax when overriding the canonical constructor
 
+    // factory method
+    // allows 1. meaningful naming, 2. initialization logic
+    public static Order createOrderAtCurrentDateTime(long id, Customer customer, List<OrderLine> lines) {
+        return new Order(id, customer, LocalDateTime.now(), lines);
+    }
 
+    // however, even with a factory method, you cannot make the canonical constructor private
 }
