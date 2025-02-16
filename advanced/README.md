@@ -2,7 +2,7 @@
 advanced java features, following the Pluralsight course *Java SE Advanced Language Features* and using Java 23
 
 ## records
-record class demos
+Demonstrations of record classes, sealed classes and pattern-matching
 
 * **rec** declare record class
 * **accessor** override record accessor
@@ -23,4 +23,5 @@ record class demos
 * **sealed** use a `sealed` interface to make limited subtypes of a "record"
 	* think of `sealed` as an `enum` for types instead of values
 	* even though (because they cannot be subtypes) records are never sealed classes, they can work well with sealed interfaces
-
+* **patterns** uses pattern-matching to eliminate type-casting operations
+	* a pattern variable can be used where its pattern-matching expression is known by the compiler to be true

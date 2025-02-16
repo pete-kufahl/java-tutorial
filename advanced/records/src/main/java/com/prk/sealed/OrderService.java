@@ -7,9 +7,11 @@ public class OrderService {
         var total = BigDecimal.ZERO;
 
         for (OrderLine line : order.lines()) {
-            if (line instanceof SaleOrderLine sale) {
+            if (line instanceof SaleOrderLine) {
+                var sale = (SaleOrderLine) line;        // see pattern variable in patterns/
                 total = total.add(sale.price());
-            } else if (line instanceof DiscountOrderLine discount) {
+            } else if (line instanceof DiscountOrderLine) {
+                var discount = (DiscountOrderLine) line; // see pattern variable in patterns/
                 total = total.subtract(discount.amount());
             }
         }
