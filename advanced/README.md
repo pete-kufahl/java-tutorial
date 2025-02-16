@@ -15,5 +15,9 @@ record class demos
 	* compact constructor: eliminate argument list and non-custom assignments
 	* additional constructors must always call the canonical constructor first
 	* can add logic with a static factory method
+* **builder** use the builder pattern to create records
+	* private class inside the record
+	* design setters to make the record creation more intuitive
+
 
 
