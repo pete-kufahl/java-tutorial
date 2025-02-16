@@ -25,3 +25,6 @@ Demonstrations of record classes, sealed classes and pattern-matching
 	* even though (because they cannot be subtypes) records are never sealed classes, they can work well with sealed interfaces
 * **patterns** uses pattern-matching to eliminate type-casting operations
 	* a pattern variable can be used where its pattern-matching expression is known by the compiler to be true
+	* pattern-matching and sealer interface enables a switch() expression to switch on type with exhaustive checking
+		* the compile breaks if a new subtype is unaccounted for
+	* add a `when` clause to add to the switching logic for additional conditions without cluttering the code after the `->`
