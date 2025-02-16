@@ -1,9 +1,9 @@
-package com.prk.constructor;
+package com.records.constructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.prk.constructor.Validation.checkThat;
+import static com.records.constructor.Validation.checkThat;
 
 public record Order(long id, Customer customer, LocalDateTime dateTime, List<OrderLine> lines) {
 

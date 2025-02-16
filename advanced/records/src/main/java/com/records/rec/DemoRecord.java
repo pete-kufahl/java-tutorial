@@ -1,4 +1,4 @@
-package com.prk.rec;
+package com.records.rec;
 
 public class DemoRecord {
     public static void main(String[] args) {

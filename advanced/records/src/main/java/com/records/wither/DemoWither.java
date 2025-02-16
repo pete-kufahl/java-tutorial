@@ -1,4 +1,4 @@
-package com.prk.wither;
+package com.records.wither;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

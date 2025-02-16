@@ -1,4 +1,4 @@
-package com.prk.constructor;
+package com.records.constructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

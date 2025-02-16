@@ -1,4 +1,4 @@
-package com.prk.hash;
+package com.records.hash;
 
 public record DuplCustomer(long id, String name, String email) {
 

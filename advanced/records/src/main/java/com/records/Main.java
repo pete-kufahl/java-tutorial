@@ -1,4 +1,4 @@
-package com.prk;
+package com.records;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.prk.rec;
+package com.records.rec;
 
 // immutable class declared as record
 
