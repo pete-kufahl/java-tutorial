@@ -20,8 +20,7 @@ record class demos
 	* design setters to make the record creation more intuitive
 * **wither** use "wither" methods to make modified copies of records
 	* makes code more intuitive, but be careful not to make extra copies
-
-## sealed
-Sealed classes and interfaces
-
+* **sealed** use a `sealed` interface to make limited subtypes of a "record"
+	* think of `sealed` as an `enum` for types instead of values
+	* even though (because they cannot be subtypes) records are never sealed classes, they can work well with sealed interfaces
 
