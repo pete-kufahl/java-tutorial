@@ -18,6 +18,9 @@ record class demos
 * **builder** use the builder pattern to create records
 	* private class inside the record
 	* design setters to make the record creation more intuitive
+* **wither** use "wither" methods to make modified copies of records
+	* makes code more intuitive, but be careful not to make extra copies
+
 
 
 
