@@ -19,11 +19,11 @@ public class DemoPatternMatching {
 
         // add the discount
         lines.add(new DiscountOrderLine("saver club", new BigDecimal("2.00")));
-
         var order = new Order(2157574L, customer, LocalDateTime.now(), lines);
-        System.out.println(order);
 
         var orderService = new OrderService();
+        System.out.println(orderService.formatOrderLines(order));
+
         var total = orderService.calculateTotal(order);
         System.out.println(order.lines().size() + " items.");
         System.out.println(total + " total cost");
