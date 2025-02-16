@@ -1,4 +1,4 @@
-package com.records.accessor;
+package com.prk.accessor;
 
 public class DemoAccessor {
     public static void main(String[] args) {

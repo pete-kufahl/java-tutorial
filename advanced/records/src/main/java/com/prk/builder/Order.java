@@ -1,4 +1,4 @@
-package com.records.wither;
+package com.prk.builder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,6 +9,12 @@ public record Order(long id, Customer customer, LocalDateTime dateTime, List<Ord
     public Order {
         lines = List.copyOf(lines);    // defensive unmodifiable copy
     }
+
+    // generating the builder pattern requires some boilerplate...
+    //  - static getter for the builder itself
+    //  - static Builder class definition
+    //      - private fields with public setters that all return this
+    //      - a public build() that calls the canonical constructor of the record
 
     public static Builder builder() {
         return new Builder();

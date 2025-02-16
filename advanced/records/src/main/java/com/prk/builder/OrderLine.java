@@ -1,4 +1,4 @@
-package com.records.constructor;
+package com.prk.builder;
 
 import java.math.BigDecimal;
 

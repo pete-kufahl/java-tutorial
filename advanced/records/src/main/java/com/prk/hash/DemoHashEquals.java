@@ -1,4 +1,4 @@
-package com.records.hash;
+package com.prk.hash;
 
 public class DemoHashEquals {
     public static void main(String[] args) {

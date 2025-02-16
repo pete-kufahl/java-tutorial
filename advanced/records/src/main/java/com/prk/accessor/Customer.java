@@ -1,4 +1,4 @@
-package com.records.accessor;
+package com.prk.accessor;
 
 public record Customer(long id, String name, String email) {
 

@@ -1,6 +1,6 @@
-package com.records.constructor;
+package com.prk.constructor;
 
-import static com.records.constructor.Validation.checkThat;
+import static com.prk.constructor.Validation.checkThat;
 
 public record Product(long id, String name, String description) {
 

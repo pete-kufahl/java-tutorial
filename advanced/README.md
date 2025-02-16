@@ -21,6 +21,7 @@ record class demos
 * **wither** use "wither" methods to make modified copies of records
 	* makes code more intuitive, but be careful not to make extra copies
 
-
+## sealed
+Sealed classes and interfaces
 
 
