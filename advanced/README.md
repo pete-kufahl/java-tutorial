@@ -1,5 +1,5 @@
 # advanced
-advanced java features, following the pluralsight course *Java SE Advanced Language Features* and using Java 23
+advanced java features, following the pluralsight course *Java SE Advanced Language Features* and using Java 21
 
 ## records
 Demonstrations of record classes, sealed classes and pattern-matching
