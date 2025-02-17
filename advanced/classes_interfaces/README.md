@@ -32,7 +32,7 @@ nested or inner classes should be named when they are potentially used for more 
 ### interfaces
 *interfaces* define a common contract for implementing classes, while *abstract classes* provide a way to share implementation code
 
-* `modern_interface` shows how default methods are added to interfaces
+* **modern_interface** shows how default methods are added to interfaces
 	* these allow methods to be added to interfaces that already have compiled subclasses
 	* interface methods have to implemented somewhere, but the default method provides a way to maintain backward compatibility
 		* it does make interfaces more like abstract classes
@@ -40,5 +40,11 @@ nested or inner classes should be named when they are potentially used for more 
 		* cannot be accessed by subclasses
 	* `static` methods can also be added to interfaces
 		* can also be made `private` to limit access
-* `static_initializer_blox` static initializer blocks
+* **static_initializer_blox** static initializer blocks
+	* provides the space for code used to initialize static member variables 
+	* e.g. configuring a class instance using properties from a file
+	* roughly, these blocks are executed the first time when the class is used
+* **instance_initializer_blox** instance initializer blocks
+	* a way to initialize class variables outside constructors
+	* rarely used, but useful when we want to share code between multiple constructors (but, they can also call each other with `this()`)
 	
