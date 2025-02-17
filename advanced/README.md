@@ -44,6 +44,14 @@ Demonstrations of record classes, sealed classes and pattern-matching
 Demonstrations of advanced techniques for using classes and interfaces
 
 * **staticnested** static nested classes
-	* 
+	* used when we need a type exclusively used by another class
+	* e.g. Builder pattern
+* **inner** non-static nested classes
+	* accessing the enclosing members from the inner class requires `this`
+	* used for similar reasons as with static nested classes
+		* need to access enclosing class from a non-static context
+		* e.g. Iterator within ArrayList
+
+
 
 
