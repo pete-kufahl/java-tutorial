@@ -1,7 +1,7 @@
 ## generics
 Custom generic types and methods
 
-### custom generic interface and implementation
+### generic interface and implementation
 
 * **tree** binary tree example
   * two types of nodes (interface `TreeNode`): inner nodes and leaf nodes, which have or don't have child nodes
@@ -28,3 +28,14 @@ Custom generic types and methods
     * takes in a `BiFunction<T, U, R>` to do so
 
 ### bounded type parameters
+* **bounded_tree** example to add restrictions to the type parameters (to **tree**)
+  * when the specification `T extends Comparable<T>` is added to the interface, it requires that a similar change be made in the implementations
+    * e.g. `<T extends Comparable<T>> implements TreeNode<T>` where `T` refers to two type parameters with the same name
+* **product** example demonstrates multiple bounds to a type parameter
+  * use interfaces to make sort-extract method non-type-specific
+    * *ProductDemo*
+    * use &-syntax on left side of declaration: `<T extends HasId & HasName>`
+    * change value parameter to use `T`
+    * in implementation, change method references to interface methods
+  * can only specify the intersection of bounds (no `|` used here)
+    * actually, java does not support union types
