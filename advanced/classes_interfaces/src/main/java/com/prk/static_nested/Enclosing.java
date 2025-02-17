@@ -1,4 +1,4 @@
-package com.prk.staticnested;
+package com.prk.static_nested;
 
 import java.time.LocalDate;
 

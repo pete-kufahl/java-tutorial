@@ -1,4 +1,4 @@
-package com.prk.namedlocal;
+package com.prk.named_local;
 
 public class DemoNamedLocal {
     public static void main(String[] args) {

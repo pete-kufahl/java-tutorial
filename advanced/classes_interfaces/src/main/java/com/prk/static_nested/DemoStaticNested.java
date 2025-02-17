@@ -1,4 +1,4 @@
-package com.prk.staticnested;
+package com.prk.static_nested;
 
 public class DemoStaticNested {
     public static void main(String[] args) {
