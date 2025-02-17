@@ -28,3 +28,7 @@ Demonstrations of record classes, sealed classes and pattern-matching
 	* pattern-matching and sealer interface enables a switch() expression to switch on type with exhaustive checking
 		* the compile breaks if a new subtype is unaccounted for
 	* add a `when` clause to add to the switching logic for additional conditions without cluttering the code after the `->`
+* **recordpatterns** extends pattern-matching for records by enabling variables to be initialized to the fields of the matching pattern
+	* Java 21: must name a variable for every parameter in the canonical constructor
+	* Java 22: can use an _ for unneeded variables
+	* record patterns can also be nested; this provides access to records within records without calling the accessor methods
