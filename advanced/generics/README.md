@@ -39,3 +39,7 @@ Custom generic types and methods
     * in implementation, change method references to interface methods
   * can only specify the intersection of bounds (no `|` used here)
     * actually, java does not support union types
+
+### inheritance
+* **animal** example to show invariance of generic types
+  * if two types S and T are related so that S implements/extends T, generic containers of these types do not have this relationship
