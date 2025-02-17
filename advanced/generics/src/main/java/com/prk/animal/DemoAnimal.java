@@ -14,5 +14,12 @@ public class DemoAnimal {
         // List<Animal> animals = dogs;
         // otherwise, we could legally add a cat to the list of dogs
         // animals.add(new Cat("Whiskers"));
+
+        List<? extends Animal> animals = dogs;  // ok
+        // error: incompatible types: Cat cannot be converted to CAP#1
+        // animals.add(new Cat("Whiskers"));
+        // also, this gets the same message!
+        // animals.add(new Dog("Poochie"));
+        // Dog is not the capture type
     }
 }

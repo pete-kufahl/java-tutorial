@@ -40,6 +40,35 @@ Custom generic types and methods
   * can only specify the intersection of bounds (no `|` used here)
     * actually, java does not support union types
 
-### inheritance
+### inheritance and wildcards
 * **animal** example to show invariance of generic types
   * if two types S and T are related so that S implements/extends T, generic containers of these types do not have this relationship
+* a *wildcard* is a way to refer to a family of types
+  * `?` is an unbounded wildcard
+  * `? extends SomeType` upper bounded wildcard, refers to `SomeType` and its subtypes
+  * `? super SomeType` lower bounded wildcard, refers to `SomeType` and its super-types
+  * whereas `List<T>` --> `List<String>` is a *concrete parameterized type*, `List<?>` creates a *wildcard parameterized type*
+    * wildcard parameterized type is not fully defined, matches a family of parameterized types
+    * `List<?>` matches `List<String>`, `List<Integer>` and so on
+    * `List<? extends Animal>` matches `List<Cat>`, `List<Dog>` and `List<Animal>`
+* java supports subtyping; this enables *wildcard capture*
+  * however, the wildcard stands for a particular, but ***unknown*** type
+  * therefore, we cannot add anything to a list of wildcard types
+* uses for wildcards
+  * defining methods that take parameters of parameterized types
+    * avoids unnecessary restrictions created by concrete parameterized types
+    * e.g. `Collections.copy()` enables `copy(animals, dogs)`
+      * `public static <T> void copy(List<? super T> dest, List<? extends T> src)`
+    * upper bounded wildcards `<? extends T>` useful for in-parameters (where data is read)
+    * lower bounded wildcards `<? super T>` useful for out-parameters (where data is written)
+    * no wildcard parameter that is both for in- and out-parameters, just use `<T>`
+    * unbounded wildcards `<?>` useful for methods that do not change the state of the parameter, like `size()`
+  * e.g. `Stream.flatMap()`
+    * `<R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper)`
+      * `T` type parameter of the Stream that flatMap is called on
+      * `R` type parameter of the Stream that flatMap returns
+      * the `Function` mapper takes `? super T` is input (lower-bounded!)
+        * and uses a lower-bounded wildcard as its output
+      * but these wildcards are used as output, and input of `flatMap` itself
+  * in general, avoid using wildcards in the return type of a method
+    * withholding type information from the method caller will makes things harder
