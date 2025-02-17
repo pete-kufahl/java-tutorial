@@ -29,7 +29,8 @@ Demonstrations of advanced techniques for using classes and interfaces
 	* also, cannot make inner class `private` but its methods can be declared `private`
 	* uses include temporary data structures only relevant to the enclosing class
 * **anonymous** nameless local classes
-
+	* follows all the rules of named local classes
+	* but, there's no way to define the constructor of an anonymous class
 
 
 
