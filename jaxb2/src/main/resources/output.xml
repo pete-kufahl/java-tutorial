@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<purchaseOrder orderDate="2025-01-25-07:00">
+    <items>
+        <item>
+            <productName>ballpoint pen</productName>
+            <quantity>20</quantity>
+            <price>8.95</price>
+            <comment>blue ink</comment>
+        </item>
+        <item>
+            <productName>pencil</productName>
+            <quantity>10</quantity>
+            <price>2.95</price>
+            <comment>TEST</comment>
+        </item>
+    </items>
+    <customer>
+        <name>George the Buyer</name>
+        <loyalty>10</loyalty>
+        <shippingAddress>
+            <street>12 Main Street</street>
+            <city>Waukegan, IL</city>
+            <postalCode>60087</postalCode>
+            <country code="USA">
+                <name>United States of America</name>
+            </country>
+        </shippingAddress>
+        <billingAddress>
+            <street>12 Main Street</street>
+            <city>Waukegan, IL</city>
+            <postalCode>60087</postalCode>
+            <country code="USA">
+                <name>United States of America</name>
+            </country>
+        </billingAddress>
+    </customer>
+</purchaseOrder>

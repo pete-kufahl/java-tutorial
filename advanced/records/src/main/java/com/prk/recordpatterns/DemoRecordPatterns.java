@@ -1,0 +1,34 @@
+package com.prk.recordpatterns;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+// build on the sealed class demo
+public class DemoRecordPatterns {
+    public static void main(String[] args) {
+
+        var product1 = new Product(10101L, "apples", "twisted apples");
+        var product2 = new Product(10332L, "bread", "Limpa rye bread");
+
+        var address = new Address("Main St.", "3440A", "Ocean City, NJ", "USA");
+        var customer = new Customer(533550L, "Georg the Buyer", "georg@gmail.com", address);
+
+        var lines = new ArrayList<OrderLine>();
+        lines.add(new SaleOrderLine(product1, 6, new BigDecimal("7.02")));
+        lines.add(new SaleOrderLine(product2, 2, new BigDecimal("2.75")));
+
+        // add the discount
+        lines.add(new DiscountOrderLine("saver club", new BigDecimal("2.00")));
+        var order = new Order(2157574L, customer, LocalDateTime.now(), lines);
+
+        var orderService = new OrderService();
+        System.out.println(orderService.formatShippingAddress(order.customer()));
+        System.out.println(orderService.formatOrderLines(order));
+
+        var total = orderService.calculateTotal(order);
+        System.out.println(order.lines().size() + " items.");
+        System.out.println(total + " total cost");
+
+    }
+}
