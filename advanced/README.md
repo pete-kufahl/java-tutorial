@@ -9,3 +9,6 @@ Demonstrations of advanced techniques for using classes and interfaces
 
 ## generics
 Custom generic types and methods
+
+## lambdas
+Demonstrations of lambda functions and function references
