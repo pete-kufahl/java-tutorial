@@ -71,4 +71,14 @@ Custom generic types and methods
         * and uses a lower-bounded wildcard as its output
       * but these wildcards are used as output, and input of `flatMap` itself
   * in general, avoid using wildcards in the return type of a method
-    * withholding type information from the method caller will makes things harder
+    * withholding type information from the method caller will make things harder
+
+### generics and variable arguments (varargs)
+  * **printlines** demos a static function that takes a variable number of arguments
+    * three dots after the type name: syntactic sugar for an array
+  * use `pair` from earlier demo to define a generic function `putIntoMap`
+  * make the method accept an arbitrary number of `Pair` instances: `...`
+  * gives warnings for unchecked exceptions
+    * the `...` is actually an array, making the argument an array of an unreifiable type (wildcard type)
+    * warning because array locations can be assigned to the wrong type 
+    * can resolve warnings with `@SafeVarargs`
