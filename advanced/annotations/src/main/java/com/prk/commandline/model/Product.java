@@ -8,9 +8,9 @@ import static com.prk.commandline.Validation.checkThat;
 public record Product(long id, String name, String description, BigDecimal price) {
 
     public static Map<Long, Product> Products_By_Id = Map.of(
-            10101L, new Product(10101L, "Apples", "twisted red apples from Winesburg", new BigDecimal("0.60")),
-            10220L, new Product(10220L, "Bread", "Limpa rye bread", new BigDecimal("5.95")),
-            10033L, new Product(10033L, "Oranges", "blood oranges", new BigDecimal("7.00"))
+    1001L, new Product(1001L, "Apples", "twisted red apples from Winesburg", new BigDecimal("0.60")),
+    1002L, new Product(1002L, "Bread", "Limpa rye bread", new BigDecimal("5.95")),
+    1003L, new Product(1003L, "Oranges", "blood oranges", new BigDecimal("7.00"))
     );
 
     public Product {

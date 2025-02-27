@@ -9,7 +9,7 @@ import com.prk.commandline.model.Product;
 import java.math.BigDecimal;
 
 @Command(value = "add", order = 30, description = "add products to shopping cart")
-public class AddToShoppingCart implements CommandExecutor {
+public class AddToShoppingCartCommand implements CommandExecutor {
 
     @Override
     public void execute(SessionState sessionState, UserInput userInput) {

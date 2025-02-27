@@ -7,10 +7,10 @@ import static com.prk.commandline.Validation.checkThat;
 public record Customer (long id, String name, String email) {
 
     public static final Map<Long, Customer> Customers_By_Id = Map.of(
-            5005L, new Customer(5005L, "Taylor Reiner", "taylor.reiner@seers.com"),
-            5166L, new Customer(5166L, "Reiner Knizia", "reiner@tigrisundeuphrat.net"),
-            5201L, new Customer(5121L, "Stefan Dorra", "sdorra@valletta.de"),
-            5444L, new Customer(5444L, "Taiki Shinzawa", "tshinzawa@americanbookshop.org")
+            5L, new Customer(5L, "Taylor Reiner", "taylor.reiner@seers.com"),
+            6L, new Customer(6L, "Reiner Knizia", "reiner@tigrisundeuphrat.net"),
+            1L, new Customer(1L, "Stefan Dorra", "sdorra@valletta.de"),
+            4L, new Customer(4L, "Taiki Shinzawa", "tshinzawa@americanbookshop.org")
     );
 
     public Customer {
