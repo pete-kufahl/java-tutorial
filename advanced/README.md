@@ -12,3 +12,6 @@ Custom generic types and methods
 
 ## lambdas
 Demonstrations of lambda functions and function references
+
+## annotations
+Demonstrations of annotations, Optional classes and try-with-rources cases
