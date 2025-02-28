@@ -35,3 +35,18 @@ declaration annotations are far more common; they declare something about a part
       * still must define a second "container" annotation: **@Commands**
 
 ### Optional interface helps avoid null pointer exceptions (NPEs)
+  * `Optional<T>` is a container for a type `T` that is never null
+  * `Optional` is an immutable value class
+    * value objects with the same value are interchangeable -> they should not be used for synchronization
+  * designed to be return type for methods, not really as a field
+    * not serializable
+  * **products** demonstrates use cases of `Optional` with a list of records
+    * **DemoOptional1** shows basic usage
+      * type inference keeps code compact, as with `Optional.of<>()` and `Optional.empty<>()`
+      * state of optionals can be checked with `.isPresent()` and `isEmpty()`
+        * `.get()` without checking state is risky, can throw exception
+        * `.orElseThrow()` is the same function, named more explicitly
+    * **DemoOptional2** shows how `Optional` facilitates functional programming
+      * stream operations like `findFirst()` return `Optional`
+      * Optional API has several stream-like operations
+      * use of `flatMap(Optional::stream)` to remove empty results
