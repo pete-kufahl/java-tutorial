@@ -1,0 +1,11 @@
+Product[id=1, name=Milk, price=2.49]
+Product[id=2, name=Bread, price=1.99]
+Product[id=5, name=Cheese, price=4.99]
+
+Product[id=6, name=Apples (1 lb), price=1.49]
+Product[id=8, name=Orange Juice (1L), price=3.49]
+Product[id=9, name=Chicken Breast (1 lb), price=5.99]
+
+Product[id=14, name=Potatoes (5 lb), price=3.29]
+
+Product[id=19, name=Coffee (250g), price=7.99]
