@@ -70,7 +70,6 @@ public class AsyncTasks {
                 v.join();
             }
 
-
             Quotation bestQuotation = quotations.stream()
                     .min(Comparator.comparing(Quotation::amount))
                     .orElseThrow();
@@ -79,8 +78,6 @@ public class AsyncTasks {
             Duration dur = Duration.between(begin, end);
             System.out.println("Best quotation [ASYNC] = " + bestQuotation + " (" + dur.toMillis() + " ms)");
             runtimes.add(dur.toMillis());
-
-
         }
         return runtimes.stream().mapToLong(Long::longValue).average().orElse(0.0);
     }
