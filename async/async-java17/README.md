@@ -23,10 +23,20 @@ splitting a result into multiple asynchronous tasks
 * launch multiple tasks at once, but use the first available result: `CompletableFuture.anyOf()`
   * *WeatherServiceAnyOf* reports the result from either of two weather-reporting tasks
   * `anyOf()` has a vararg parameter, but a `CompletableFuture<Object>` return type that may require a casting operation
-  * since only one worker thread needs to finish for `.join()`, console output sometimes shows that only one thread completed
-* launch multiple tasks, when you need all the results: ``
+    * since only one worker thread needs to finish for `.join()`, console output sometimes shows that only one thread completed
+  * *WeatherServiceFirstReport* is another version of this, with 3 suppliers and for-loop
+    * note that the vararg argument for `anyOf()` requires an array, so use the Java-8 pattern:
+      * `futures.toArray(CompletableFuture[]::new)`
+* launch multiple tasks, when you need all the results
   * *QuotationServiceBestPrice* gets data from 3 suppliers, calls `.allOf()` that returns `CompletableFuture<Void>`
     * `CompletableFuture<Void>` stores the finished state of the first `CompleableFuture<>` instances 
     * handle this return type with the Stream API
-      * `Stream.of(..).map(CompletableFuture::join).min(...).orElseThrow()` inside a `.join()`
+      * `Stream.of(..).map(CompletableFuture::join).min(...).orElseThrow()` inside a `.thenApply() ... .join()`
+      * note that `.thenApply()` wants a function that has a void parameter, use lambda syntax
 * composing the `CompletableFuture` instances
+  * *TravelPage1* demos 2 patterns for composing a result from two asynchronous sources without blocking the main thread
+    *  `.thenCombine()` is clearer, but the `.thenApply()` call is an argument and will always be called (even if something goes wrong with the first CF)
+    *  `.thenCompose()` puts `.thenApply()` in the body of a lambda expression, which means it won't be called if something goes wrong with the first CF
+  * *TravelPage2* is a cleaner version of the `.thenCompose()` case
+    * coding the pattern is tricky, with casting from `CompletableFuture<Object>` needed before the `Comparator`
+

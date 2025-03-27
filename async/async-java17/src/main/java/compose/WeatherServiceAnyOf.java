@@ -54,5 +54,4 @@ public class WeatherServiceAnyOf {
         }
         return runtimes.stream().mapToLong(Long::longValue).average().orElse(0.0);
     }
-
 }

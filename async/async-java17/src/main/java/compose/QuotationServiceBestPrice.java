@@ -11,6 +11,9 @@ import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Supplier;
 
+/**
+ * demo for reading multiple tasks and comparing the information returned from ALL of them
+ */
 public class QuotationServiceBestPrice {
     public static void main(String[] args) {
         double ans = run(10);
