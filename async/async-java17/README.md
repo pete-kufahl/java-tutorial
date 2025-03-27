@@ -40,3 +40,15 @@ splitting a result into multiple asynchronous tasks
   * *TravelPage2* is a cleaner version of the `.thenCompose()` case
     * coding the pattern is tricky, with casting from `CompletableFuture<Object>` needed before the `Comparator`
 
+### control
+the concurrency framework allows control over what thread gets assigned to a task
+* by default, async tasks are executed in the common fork/join pool
+  * one wait list per thread, and an inactive thread can take a task from another thread --> *work stealing*
+  * threads can managed (some amount to I/O, network, databases, etc.)
+* `CompletableFuture` naming conventions:
+  * if the method passed into a CF does not end in `...Async`, the task will be finished by the same thread that it began with
+  * if the method ends in `...Async`, this is generally not the case
+    * overloads a method with an `Executor` as a parameter
+    * `Executor` is a functional interface that can be implemented by a lambda
+    * common in GUI frameworks
+* *ControlRunAsync*
