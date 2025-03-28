@@ -51,6 +51,13 @@ the concurrency framework allows control over what thread gets assigned to a tas
     * overloads a method with an `Executor` as a parameter
     * `Executor` is a functional interface that can be implemented by a lambda
     * common in GUI frameworks
-* *ControlComposeTasks* demonstrates use of `...Async` methods to send tasks to specificc thread pools
+* *ControlComposeTasks* demonstrates use of `...Async` methods to send tasks to specific thread pools
 
-### errors
+### exception_handling
+reporting and recovering from errors
+* when a task completes with an exception, the rest of the pipeline will also fail if the exception is not handled
+* the `CompletableFuture` API offers several handling options
+  * `.exceptionally()` returns a CF with default values (optional)
+  * `whenComplete()` takes a BiConsumer and Exception (one should be null), is suited for tasks with no downstream tasks
+  * `handle()` takes a BiFunction and Exception (one should be null)
+* *ComposeTasksWithErrorHandling* shows recovery from exceptions thrown by two worker tasks
