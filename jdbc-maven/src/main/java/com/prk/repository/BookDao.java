@@ -43,8 +43,8 @@ public class BookDao extends AbstractDao implements Dao <Book> {
         String sql = "SELECT ID, TITLE FROM BOOK WHERE ID = ?";
 
         try (
-                Connection con = getConnection();
-                PreparedStatement prepStmt = con.prepareStatement(sql);
+            Connection con = getConnection();
+            PreparedStatement prepStmt = con.prepareStatement(sql);
         ) {
             prepStmt.setLong(1, id);
 
@@ -58,7 +58,9 @@ public class BookDao extends AbstractDao implements Dao <Book> {
                 book = Optional.of(resBook);
             }
         }
-        catch (SQLException sqe) { sqe.printStackTrace();}
+        catch (SQLException sqe) {
+            sqe.printStackTrace();
+        }
 
         return book;
     }
