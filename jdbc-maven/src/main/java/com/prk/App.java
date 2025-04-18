@@ -6,11 +6,14 @@ import com.prk.repository.Dao;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class App {
 
     public static void main(String[] args) {
         boolean ifCreate = false;
+        boolean ifUpdate = false;
+        int batchUpdate = 0;
 
         Dao<Book> bookDao = new BookDao();
         List<Book> books = bookDao.findAll();
@@ -18,6 +21,7 @@ public class App {
         for (Book book : books) {
             System.out.println("Id: " + book.getId());
             System.out.println("Title: " + book.getTitle());
+            System.out.println("Rating: " + book.getRating());
         }
 
         Optional<Book> optBook = bookDao.findById(1);
@@ -25,9 +29,12 @@ public class App {
             Book book = optBook.get();
             System.out.println("Id: " + book.getId());
             System.out.println("Title: " + book.getTitle());
+            System.out.println("Rating: " + book.getRating());
 
-            book.setTitle("Effective Java: Second Edition");
-            bookDao.update(book);
+            if (ifUpdate) {
+                book.setTitle("Effective Java: Second Edition");
+                bookDao.update(book);
+            }
         }
 
         if (ifCreate) {
@@ -37,6 +44,15 @@ public class App {
 
             System.out.println("Id: " + newBook.getId());
             System.out.println("Title: " + newBook.getTitle());
+        }
+
+        if (batchUpdate > 0) {
+            books = bookDao.findAll();
+            List<Book> updatedEntries = books.stream()
+                            .peek(b -> b.setRating(batchUpdate))
+                            .collect(Collectors.toList());
+            var ret = bookDao.update(updatedEntries);
+            System.out.println("updated ids: " + ret.toString());
         }
     }
 }

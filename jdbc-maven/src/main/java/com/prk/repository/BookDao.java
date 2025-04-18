@@ -24,6 +24,7 @@ public class BookDao extends AbstractDao implements Dao <Book> {
                 Book book = new Book();
                 book.setId(rset.getLong("id"));
                 book.setTitle(rset.getString("title"));
+                book.setRating(rset.getInt("rating"));
                 books.add(book);
             }
         } catch (SQLException sqe) {
@@ -35,7 +36,7 @@ public class BookDao extends AbstractDao implements Dao <Book> {
     @Override
     public Optional<Book> findById(long id) {
         Optional<Book> book = Optional.empty();
-        String sql = "SELECT ID, TITLE FROM BOOK WHERE ID = ?";
+        String sql = "SELECT ID, TITLE, RATING FROM BOOK WHERE ID = ?";
         try (
             Connection con = getConnection();
             PreparedStatement prepStmt = con.prepareStatement(sql);
@@ -46,6 +47,7 @@ public class BookDao extends AbstractDao implements Dao <Book> {
                 if(rset.next()) {
                     resBook.setId(rset.getLong("ID"));
                     resBook.setTitle(rset.getString("TITLE"));
+                    resBook.setRating(rset.getInt("RATING"));
                 }
                 book = Optional.of(resBook);
             }
@@ -95,7 +97,23 @@ public class BookDao extends AbstractDao implements Dao <Book> {
     }
 
     @Override
-    public int[] update(List<Book> t) {
-        return new int[0];
+    public int[] update(List<Book> books) {
+        int[] records = {};
+        String sql = "UPDATE BOOK SET TITLE = ?, RATING = ? WHERE ID = ?";
+        try (
+            Connection con = getConnection();
+            PreparedStatement stmt = con.prepareStatement(sql);
+        ) {
+            for (Book book : books) {
+                stmt.setString(1, book.getTitle());
+                stmt.setInt(2, book.getRating());
+                stmt.setLong(3, book.getId());
+                stmt.addBatch();
+            }
+            records = stmt.executeBatch();
+        } catch (SQLException sqe) {
+            sqe.printStackTrace();
+        }
+        return records;
     }
 }

@@ -4,6 +4,7 @@ public class Book {
 
     private long id;
     private String title;
+    private int rating;
 
     public long getId() {
         return id;
@@ -19,5 +20,13 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
