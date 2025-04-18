@@ -10,4 +10,10 @@ public interface Dao<T> {
     List<T> findAll();
 
     Optional<Book> findById(long id);
+
+    T create(T t);
+
+    T update(T t);
+
+    int[] update (List<T> t);
 }

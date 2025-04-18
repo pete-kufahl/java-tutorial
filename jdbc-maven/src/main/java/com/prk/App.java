@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 public class App {
-    public static void main(String[] args) {
-        Dao<Book> bookDao = new BookDao();
 
+    public static void main(String[] args) {
+        boolean ifCreate = true;
+
+        Dao<Book> bookDao = new BookDao();
         List<Book> books = bookDao.findAll();
 
         for (Book book : books) {
@@ -24,6 +26,15 @@ public class App {
 
             System.out.println("Id: " + book.getId());
             System.out.println("Title: " + book.getTitle());
+        }
+
+        if (ifCreate) {
+            Book newBook = new Book();
+            newBook.setTitle("The River Why");
+            newBook = bookDao.create(newBook);
+
+            System.out.println("Id: " + newBook.getId());
+            System.out.println("Title: " + newBook.getTitle());
         }
     }
 }
