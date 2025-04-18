@@ -11,9 +11,10 @@ import java.util.stream.Collectors;
 public class App {
 
     public static void main(String[] args) {
-        boolean ifCreate = false;
+        boolean ifCreate = true;
         boolean ifUpdate = false;
         int batchUpdate = 0;
+        boolean ifDelete = true;
 
         Dao<Book> bookDao = new BookDao();
         List<Book> books = bookDao.findAll();
@@ -37,9 +38,9 @@ public class App {
             }
         }
 
+        Book newBook = new Book();
+        newBook.setTitle("The River Why");
         if (ifCreate) {
-            Book newBook = new Book();
-            newBook.setTitle("The River Why");
             newBook = bookDao.create(newBook);
 
             System.out.println("Id: " + newBook.getId());
@@ -53,6 +54,11 @@ public class App {
                             .collect(Collectors.toList());
             var ret = bookDao.update(updatedEntries);
             System.out.println("updated ids: " + ret.toString());
+        }
+
+        if (ifDelete) {
+            int numDel = bookDao.delete(newBook);
+            System.out.println("number of records deleted: " + numDel);
         }
     }
 }

@@ -45,9 +45,9 @@ public class BookDao extends AbstractDao implements Dao <Book> {
             try (ResultSet rset = prepStmt.executeQuery();) {
                 Book resBook = new Book();
                 if(rset.next()) {
-                    resBook.setId(rset.getLong("ID"));
-                    resBook.setTitle(rset.getString("TITLE"));
-                    resBook.setRating(rset.getInt("RATING"));
+                    resBook.setId(rset.getLong("id"));
+                    resBook.setTitle(rset.getString("title"));
+                    resBook.setRating(rset.getInt("rating"));
                 }
                 book = Optional.of(resBook);
             }
@@ -115,5 +115,21 @@ public class BookDao extends AbstractDao implements Dao <Book> {
             sqe.printStackTrace();
         }
         return records;
+    }
+
+    @Override
+    public int delete(Book book) {
+        int rowsAffected = 0;
+        String sql = "DELETE FROM BOOK WHERE ID = ?";
+        try (
+            Connection con = getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+        ) {
+            preparedStatement.setLong(1, book.getId());
+            rowsAffected = preparedStatement.executeUpdate();
+        } catch (SQLException sqe) {
+            sqe.printStackTrace();
+        }
+        return rowsAffected;
     }
 }
