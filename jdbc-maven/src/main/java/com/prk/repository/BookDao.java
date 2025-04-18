@@ -19,10 +19,10 @@ public class BookDao extends AbstractDao implements Dao <Book> {
         String sql = "SELECT * FROM BOOK";
 
         try (
-                Connection con = getConnection();
-                Statement stmt = con.createStatement();
-                ResultSet rset = stmt.executeQuery(sql);
-                ) {
+            Connection con = getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet rset = stmt.executeQuery(sql);
+            ) {
 
             books = new ArrayList<>();
 
@@ -33,7 +33,9 @@ public class BookDao extends AbstractDao implements Dao <Book> {
                 books.add(book);
             }
 
-        } catch (SQLException sqe) {sqe.printStackTrace();}
+        } catch (SQLException sqe) {
+            sqe.printStackTrace();
+        }
         return books;
     }
 }
