@@ -80,7 +80,18 @@ public class BookDao extends AbstractDao implements Dao <Book> {
 
     @Override
     public Book update(Book book) {
-        return null;
+        String sql = "UPDATE BOOK SET TITLE = ? WHERE ID = ?";
+        try (
+            Connection con = getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+        ) {
+            preparedStatement.setString(1, book.getTitle());
+            preparedStatement.setLong(2, book.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException sqe) {
+            sqe.printStackTrace();
+        }
+        return book;
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.Optional;
 public class App {
 
     public static void main(String[] args) {
-        boolean ifCreate = true;
+        boolean ifCreate = false;
 
         Dao<Book> bookDao = new BookDao();
         List<Book> books = bookDao.findAll();
@@ -23,9 +23,11 @@ public class App {
         Optional<Book> optBook = bookDao.findById(1);
         if(optBook.isPresent()) {
             Book book = optBook.get();
-
             System.out.println("Id: " + book.getId());
             System.out.println("Title: " + book.getTitle());
+
+            book.setTitle("Effective Java: Second Edition");
+            bookDao.update(book);
         }
 
         if (ifCreate) {
