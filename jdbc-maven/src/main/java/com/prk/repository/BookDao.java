@@ -3,8 +3,6 @@ package com.prk.repository;
 import com.prk.model.Book;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +10,7 @@ public class BookDao extends AbstractDao implements Dao <Book> {
 
     @Override
     public List<Book> findAll() {
-        JdbcQueryTemplate<Book> template = new JdbcQueryTemplate<Book>() {
+        JdbcQueryTemplate<Book> template = new JdbcQueryTemplate<>() {
             @Override
             public Book mapItem(ResultSet rset) throws SQLException {
                 Book book = new Book();
@@ -31,10 +29,10 @@ public class BookDao extends AbstractDao implements Dao <Book> {
         String sql = "SELECT ID, TITLE, RATING FROM BOOK WHERE ID = ?";
         try (
             Connection con = getConnection();
-            PreparedStatement prepStmt = con.prepareStatement(sql);
+            PreparedStatement prepStmt = con.prepareStatement(sql)
         ) {
             prepStmt.setLong(1, id);
-            try (ResultSet rset = prepStmt.executeQuery();) {
+            try (ResultSet rset = prepStmt.executeQuery()) {
                 Book resBook = new Book();
                 if(rset.next()) {
                     resBook.setId(rset.getLong("id"));
@@ -56,7 +54,7 @@ public class BookDao extends AbstractDao implements Dao <Book> {
         try (
             Connection con = getConnection();
             PreparedStatement prepStmt = con.prepareStatement(sql,
-                    Statement.RETURN_GENERATED_KEYS);
+                    Statement.RETURN_GENERATED_KEYS)
         ) {
             prepStmt.setString(1, book.getTitle());
             prepStmt.executeUpdate();
@@ -77,7 +75,7 @@ public class BookDao extends AbstractDao implements Dao <Book> {
         String sql = "UPDATE BOOK SET TITLE = ? WHERE ID = ?";
         try (
             Connection con = getConnection();
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            PreparedStatement preparedStatement = con.prepareStatement(sql)
         ) {
             preparedStatement.setString(1, book.getTitle());
             preparedStatement.setLong(2, book.getId());
@@ -94,7 +92,7 @@ public class BookDao extends AbstractDao implements Dao <Book> {
         String sql = "UPDATE BOOK SET TITLE = ?, RATING = ? WHERE ID = ?";
         try (
             Connection con = getConnection();
-            PreparedStatement stmt = con.prepareStatement(sql);
+            PreparedStatement stmt = con.prepareStatement(sql)
         ) {
             for (Book book : books) {
                 stmt.setString(1, book.getTitle());
@@ -115,7 +113,7 @@ public class BookDao extends AbstractDao implements Dao <Book> {
         String sql = "DELETE FROM BOOK WHERE ID = ?";
         try (
             Connection con = getConnection();
-            PreparedStatement preparedStatement = con.prepareStatement(sql);
+            PreparedStatement preparedStatement = con.prepareStatement(sql)
         ) {
             preparedStatement.setLong(1, book.getId());
             rowsAffected = preparedStatement.executeUpdate();

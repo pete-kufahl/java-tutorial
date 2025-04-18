@@ -15,7 +15,7 @@ public abstract class JdbcQueryTemplate<T> extends AbstractDao {
         try (
             Connection conn = getConnection();
             Statement stmt = conn.createStatement();
-            ResultSet rset = stmt.executeQuery(sql);)
+            ResultSet rset = stmt.executeQuery(sql))
         {
             while(rset.next()) {
                 items.add(mapItem(rset));
