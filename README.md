@@ -18,3 +18,6 @@ advanced language features of java SE 21
 
 ## async
 tutorials for asynchronous and concurrent programming
+
+## jdbc-maven
+tutorial project for java JDBC framework and mySQL
