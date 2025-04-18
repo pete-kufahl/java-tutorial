@@ -11,10 +11,10 @@ import java.util.stream.Collectors;
 public class App {
 
     public static void main(String[] args) {
-        boolean ifCreate = true;
+        boolean ifCreate = false;
         boolean ifUpdate = false;
         int batchUpdate = 0;
-        boolean ifDelete = true;
+        boolean ifDelete = false;
 
         Dao<Book> bookDao = new BookDao();
         List<Book> books = bookDao.findAll();

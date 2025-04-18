@@ -12,25 +12,17 @@ public class BookDao extends AbstractDao implements Dao <Book> {
 
     @Override
     public List<Book> findAll() {
-        List<Book> books = Collections.emptyList();
-        String sql = "SELECT * FROM BOOK";
-        try (
-            Connection con = getConnection();
-            Statement stmt = con.createStatement();
-            ResultSet rset = stmt.executeQuery(sql);
-            ) {
-            books = new ArrayList<>();
-            while (rset.next()) {
+        JdbcQueryTemplate<Book> template = new JdbcQueryTemplate<Book>() {
+            @Override
+            public Book mapItem(ResultSet rset) throws SQLException {
                 Book book = new Book();
                 book.setId(rset.getLong("id"));
                 book.setTitle(rset.getString("title"));
                 book.setRating(rset.getInt("rating"));
-                books.add(book);
+                return book;
             }
-        } catch (SQLException sqe) {
-            sqe.printStackTrace();
-        }
-        return books;
+        };
+        return template.queryForList("SELECT ID, TITLE, RATING FROM BOOK");
     }
 
     @Override
