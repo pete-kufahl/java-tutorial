@@ -23,7 +23,7 @@ public class ApplicationDomServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         JsonNode loanApplication = objectMapper.readTree(req.getInputStream());
         double totalIncome = getTotalIncome(loanApplication);
         double amount = getAmount(loanApplication);
