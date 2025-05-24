@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class ApplicationServlet extends HttpServlet {
+public class ApplicationDomServlet extends HttpServlet {
     // approve the bank loan if the amount <= 3 * totalIncome, deny otherwise
     // SC_OK to approve
     // SC_FORBIDDEN to deny
@@ -19,7 +19,7 @@ public class ApplicationServlet extends HttpServlet {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main (String[] args) {
-        SimpleJettyService.run(ApplicationServlet.class);
+        SimpleJettyService.run(ApplicationDomServlet.class);
     }
 
     @Override
