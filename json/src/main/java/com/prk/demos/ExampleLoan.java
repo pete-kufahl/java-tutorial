@@ -9,8 +9,6 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.time.Month.JANUARY;
-
 public class ExampleLoan {
     public static final LoanApplication LOAN_APPLICATION;
 
