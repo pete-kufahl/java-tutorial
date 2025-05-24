@@ -12,6 +12,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class ConsumingWithDomApi {
+    // cases to use Dom api
+    // 1. integration with unstable apis - DOM offers flexibility to support different formats
+    // 2. api evolution - supporting different versions of an api
+    //  e.g. different client versions pushing JSON requests
+
     private static final File BANK_LOAN_FILE = new File("src/main/resources/bank_loan.json");
 
     public static void main(String[] args) throws IOException {
