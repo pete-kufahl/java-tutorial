@@ -4,7 +4,8 @@ import com.prk.common.Job;
 import com.prk.common.LoanApplication;
 import com.prk.common.LoanDetails;
 
-import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,16 @@ public class ExampleLoan {
     static {
         final LoanDetails loanDetails = new LoanDetails();
         loanDetails.setAmount(10_000.00);
-        loanDetails.setStartDate(LocalDate.of(2025, JANUARY, 15));
-        loanDetails.setEndDate(LocalDate.of(2030, JANUARY, 15));
+
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2025, Calendar.JANUARY, 15, 0, 0, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        Date startDate = calendar.getTime();
+        loanDetails.setStartDate(startDate);
+        calendar.set(2025, Calendar.JANUARY, 15, 0, 0, 0);
+        Date endDate = calendar.getTime();
+        loanDetails.setEndDate(endDate);
 
         final List<Job> jobs = new ArrayList<>();
 
