@@ -34,6 +34,6 @@ public class LoanDetails {
     @Override
     public String toString() {
         return "LoneDetails{" + "amount=" + amount + ", startDate='" + startDate + '\'' +
-                ", endDate='" + '\'' + '}';
+                ", endDate='" + endDate + '\'' + '}';
     }
 }
