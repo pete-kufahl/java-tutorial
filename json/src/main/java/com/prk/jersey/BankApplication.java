@@ -10,7 +10,7 @@ public class BankApplication {
     public static final String BASE_URI = "http://localhost:8080/";
 
     public static HttpServer startServer() {
-        final ResourceConfig config = new ResourceConfig().packages("com.prk.jersey"); // use your package
+        final ResourceConfig config = new ResourceConfig().packages("com.prk.jersey");
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), config);
     }
 
