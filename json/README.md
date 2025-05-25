@@ -3,7 +3,9 @@ examples used for the PluralSight course **Java JSON Fundamentals**
 * a large data file is used via symbolic link
   * download citylots.json from https://github.com/zemirco/sf-city-lots-json/blob/master/citylots.json
   * `ln -s ~/Downloads/citylots.json src/main/resources/citylots.json`
-* demos are done with both basic "demo" classes with main() functions, and with Servlet classes injected into a basic Jetty server
+* `..Consumer` packages feature Jackson API demos
+  * basic "demo" classes with main() functions
+  * Servlet classes injected into a basic Jetty server
 
 ## demos
 alternative approaches for producing JSON programmatically
@@ -23,3 +25,11 @@ handling immutable POJO classes and transformations for name mismatches and list
 
 ## streamingConsumer
 consuming JSON with the streaming API
+### Benchmark test
+* compares streaming versus binding api - execution speed
+* `>  java -jar target/json-1.0-SNAPSHOT.jar JsonBenchmark.streaming` to run
+* streaming about 20% faster
+### Memory Consumption test
+* streaming versus binding api
+* streaming uses about 70% less memory on the heap
+
