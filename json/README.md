@@ -38,3 +38,8 @@ consuming JSON with the streaming API
   * DOM and binding apis require all fields in the JSON input to be accounted for in the POJO
   * streaming api did not require DTO changes
 
+## jersey
+integration of JSON with JAX-RS and Jersey
+* note that adding the jersey dependencies required a purge of the local repositories and clean install
+
+
