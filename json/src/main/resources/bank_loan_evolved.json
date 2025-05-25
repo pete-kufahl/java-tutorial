@@ -1,0 +1,26 @@
+{
+  "name": "Pancho the Dog",
+  "comments": "seems trustworthy",
+  "loanDetails": {
+    "amount": 10000.00,
+    "startDate": "2025-01-15",
+    "endDate": "2030-01-15"
+  },
+  "jobs": [
+    {
+      "title": "freelance developer",
+      "annualIncome": 18000,
+      "yearsActive": 3
+    },
+    {
+      "title": "part-time developer",
+      "annualIncome": 40000,
+      "yearsActive": 8
+    },
+    {
+      "title": "course author",
+      "annualIncome": 13000,
+      "yearsActive": 1
+    }
+  ]
+}

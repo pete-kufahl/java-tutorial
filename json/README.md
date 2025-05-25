@@ -33,3 +33,8 @@ consuming JSON with the streaming API
 * streaming versus binding api
 * streaming uses about 70% less memory on the heap
 
+## versioning
+* **ApiEvolution** demonstrates how the different APIs can be sensitive/insensitive to schema changes if the changed fields are not used in the extraction code
+  * DOM and binding apis require all fields in the JSON input to be accounted for in the POJO
+  * streaming api did not require DTO changes
+
