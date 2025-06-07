@@ -2,10 +2,7 @@ package com.prk.user;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 
 public class UserController {
     private final UserService userService = new UserService();
@@ -20,6 +17,8 @@ public class UserController {
             throw new RuntimeException(e);
         }
         handler.setLevel(Level.FINE);
+        handler.setFormatter(new SimpleFormatter());
+        // handler.setFilter(s -> false);
         LOGGER.addHandler(handler);
     }
 
