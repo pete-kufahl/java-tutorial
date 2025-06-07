@@ -2,13 +2,26 @@ package com.prk.order;
 
 import com.prk.user.User;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class OrderController {
-    private static final OrderService service = new OrderService();
+    private final OrderService service = new OrderService();
     private static final Logger LOGGER = Logger.getLogger(OrderController.class.getName());
+    static {
+        LOGGER.setLevel(Level.FINE);
+        FileHandler handler = null;
+        try {
+            handler = new FileHandler(OrderController.class.getSimpleName() + ".log");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        handler.setLevel(Level.FINE);
+        LOGGER.addHandler(handler);
+    }
 
     // get all
     public List<Order> getAllOrders() {

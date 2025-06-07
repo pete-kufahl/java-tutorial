@@ -4,15 +4,28 @@ import com.prk.user.User;
 import com.prk.user.UserRepository;
 import com.prk.user.UserStatus;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class OrderService {
     private OrderRepository repository = new OrderRepository();
     private static final Logger LOGGER = Logger.getLogger(OrderService.class.getName());
+    static {
+        LOGGER.setLevel(Level.FINE);
+        FileHandler handler = null;
+        try {
+            handler = new FileHandler(OrderService.class.getSimpleName() + ".log");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        handler.setLevel(Level.FINE);
+        LOGGER.addHandler(handler);
+    }
 
     // get all
     public List<Order> getAllOrders() {

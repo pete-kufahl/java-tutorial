@@ -1,17 +1,24 @@
 package com.prk.user;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UserController {
-    private static final UserService userService = new UserService();
+    private final UserService userService = new UserService();
     private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
     static {
         LOGGER.setLevel(Level.FINE);
-        ConsoleHandler handler = new ConsoleHandler();
+        FileHandler handler = null;
+        try {
+            handler = new FileHandler(UserController.class.getSimpleName() + ".log");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         handler.setLevel(Level.FINE);
         LOGGER.addHandler(handler);
     }
