@@ -7,9 +7,12 @@ import com.prk.user.UserStatus;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrderService {
     private OrderRepository repository = new OrderRepository();
+    private static final Logger LOGGER = Logger.getLogger(OrderService.class.getName());
 
     // get all
     public List<Order> getAllOrders() {
@@ -33,6 +36,7 @@ public class OrderService {
     // add order
     public boolean addOrder(Order order) {
         if (order.getOrderDateTime().isAfter(LocalDateTime.now())) {
+            LOGGER.log(Level.WARNING, "cannot place order in the future: " + order.toString());
             try {
                 throw new Exception("cannot place an order in the future");
             } catch (Exception e) {
@@ -41,6 +45,7 @@ public class OrderService {
             }
         }
         if (order.getProducts().isEmpty()) {
+            LOGGER.log(Level.WARNING, "trying to place an empty order: " + order.toString());
             try {
                 throw new Exception("order must consist of at least one product");
             } catch (Exception e) {
@@ -49,6 +54,7 @@ public class OrderService {
             }
         }
         if (order.getUser().getUserStatus() == UserStatus.BLOCKED) {
+            LOGGER.log(Level.WARNING, "trying to place an order for a blocked user: " + order.toString());
             try {
                 throw new Exception("order cannot be placed by a blocked user");
             } catch (Exception e) {
@@ -56,6 +62,7 @@ public class OrderService {
                 return false;
             }
         } else if (order.getUser().getUserStatus() == UserStatus.PENDING) {
+            LOGGER.log(Level.WARNING, "trying to place an order by a pending user " + order.toString());
             try {
                 throw new Exception("order cannot be placed by a pending user");
             } catch (Exception e) {

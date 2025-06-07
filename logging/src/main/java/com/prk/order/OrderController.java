@@ -3,9 +3,12 @@ package com.prk.order;
 import com.prk.user.User;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OrderController {
     private static final OrderService service = new OrderService();
+    private static final Logger LOGGER = Logger.getLogger(OrderController.class.getName());
 
     // get all
     public List<Order> getAllOrders() {
@@ -19,6 +22,8 @@ public class OrderController {
 
     // post
     public boolean addOrder(Order order) {
+
+        LOGGER.log(Level.INFO, "at post endpoint for order: " + order.toString());
         return service.addOrder(order);
     }
 

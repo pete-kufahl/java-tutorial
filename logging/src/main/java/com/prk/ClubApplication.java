@@ -12,12 +12,12 @@ import java.util.List;
 
 public class ClubApplication {
     public static void main(String[] args) {
-        startup();
+        try_add_user_add_order();
     }
 
-    public static void startup() {
+    public static void try_add_user_add_order() {
         // code that pretends to be a user and place an order
-        User user = new User(4, "Pancho", "pancho@dogs.org", LocalDateTime.now(), UserStatus.PENDING);
+        User user = new User(4, "Anne", "anne.cleves@royal.uk", LocalDateTime.now(), UserStatus.PENDING);
         var userController = new UserController();
         userController.addUser(user);
 

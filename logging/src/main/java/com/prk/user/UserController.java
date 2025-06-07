@@ -1,9 +1,12 @@
 package com.prk.user;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UserController {
     private static final UserService userService = new UserService();
+    private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
 
     // get all endpoint
     public List<User> getAllUsers() {
@@ -17,6 +20,7 @@ public class UserController {
 
     // post endpoint
     public boolean addUser(User user) {
+        LOGGER.log(Level.INFO, "in Post endpoint for user: " + user);
         return userService.addUser(user);
     }
 
