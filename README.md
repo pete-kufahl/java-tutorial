@@ -24,3 +24,6 @@ tutorial project for java JDBC framework and mySQL
 
 ## json
 tutorials for working with and integrating various JSON APIs
+
+## logging
+tutorial api backend for basic logging
