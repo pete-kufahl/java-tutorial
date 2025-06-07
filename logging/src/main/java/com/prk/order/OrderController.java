@@ -23,7 +23,7 @@ public class OrderController {
     // post
     public boolean addOrder(Order order) {
 
-        LOGGER.log(Level.INFO, "at post endpoint for order: " + order.toString());
+        LOGGER.log(Level.FINE, "at post endpoint for order: " + order.toString());
         return service.addOrder(order);
     }
 

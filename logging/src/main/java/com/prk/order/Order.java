@@ -15,6 +15,18 @@ public class Order {
 
     public Order() { }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Order {");
+        sb.append("id=").append(id);
+        sb.append(", user=").append(user);
+        sb.append(", products=").append(products);
+        sb.append(", orderDateTime=").append(orderDateTime);
+        sb.append(", orderStatus=").append(orderStatus);
+        sb.append('}');
+        return sb.toString();
+    }
+
     public Order(long id, User user, List<Product> products, LocalDateTime orderDateTime) {
         this.user = user;
         this.products = products;

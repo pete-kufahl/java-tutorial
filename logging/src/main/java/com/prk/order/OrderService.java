@@ -24,6 +24,7 @@ public class OrderService {
         if (UserRepository.getDummyDataList().contains(user)) {
             return repository.findByUser(user);
         } else {
+            LOGGER.log(Level.WARNING, "user was not found: " + user);
             try {
                 throw new Exception("the user does not exist");
             } catch (Exception e) {
@@ -36,7 +37,7 @@ public class OrderService {
     // add order
     public boolean addOrder(Order order) {
         if (order.getOrderDateTime().isAfter(LocalDateTime.now())) {
-            LOGGER.log(Level.WARNING, "cannot place order in the future: " + order.toString());
+            LOGGER.log(Level.WARNING, "cannot place order in the future: " + order);
             try {
                 throw new Exception("cannot place an order in the future");
             } catch (Exception e) {
@@ -45,7 +46,7 @@ public class OrderService {
             }
         }
         if (order.getProducts().isEmpty()) {
-            LOGGER.log(Level.WARNING, "trying to place an empty order: " + order.toString());
+            LOGGER.log(Level.WARNING, "trying to place an empty order: " + order);
             try {
                 throw new Exception("order must consist of at least one product");
             } catch (Exception e) {
@@ -54,7 +55,7 @@ public class OrderService {
             }
         }
         if (order.getUser().getUserStatus() == UserStatus.BLOCKED) {
-            LOGGER.log(Level.WARNING, "trying to place an order for a blocked user: " + order.toString());
+            LOGGER.log(Level.WARNING, "trying to place an order for a blocked user: " + order);
             try {
                 throw new Exception("order cannot be placed by a blocked user");
             } catch (Exception e) {
@@ -62,7 +63,7 @@ public class OrderService {
                 return false;
             }
         } else if (order.getUser().getUserStatus() == UserStatus.PENDING) {
-            LOGGER.log(Level.WARNING, "trying to place an order by a pending user " + order.toString());
+            LOGGER.log(Level.WARNING, "trying to place an order by a pending user " + order);
             try {
                 throw new Exception("order cannot be placed by a pending user");
             } catch (Exception e) {
@@ -70,6 +71,7 @@ public class OrderService {
                 return false;
             }
         }
+        LOGGER.log(Level.INFO, "placing an order: " + order);
         return repository.save(order);
     }
 
