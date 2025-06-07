@@ -6,12 +6,14 @@ import com.prk.product.ProductRepository;
 import com.prk.user.User;
 import com.prk.user.UserStatus;
 import com.prk.user.UserController;
+import com.prk.util.LoggingUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class ClubApplication {
     public static void main(String[] args) {
+        LoggingUtil.initLogManager();
         try_add_user_add_order();
     }
 

@@ -1,26 +1,11 @@
 package com.prk.user;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.*;
 
 public class UserController {
     private final UserService userService = new UserService();
     private static final Logger LOGGER = Logger.getLogger(UserController.class.getName());
-
-    static {
-        LOGGER.setLevel(Level.FINE);
-        FileHandler handler = null;
-        try {
-            handler = new FileHandler(UserController.class.getSimpleName() + ".log");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        handler.setLevel(Level.FINE);
-        handler.setFormatter(new SimpleFormatter());
-        // handler.setFilter(s -> false);
-        LOGGER.addHandler(handler);
-    }
 
     // get all endpoint
     public List<User> getAllUsers() {

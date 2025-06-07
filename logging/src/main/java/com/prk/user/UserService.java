@@ -1,27 +1,14 @@
 package com.prk.user;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UserService {
     private UserRepository repository = new UserRepository();
     private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
-    static {
-        LOGGER.setLevel(Level.FINE);
-        FileHandler handler = null;
-        try {
-            handler = new FileHandler(UserService.class.getSimpleName() + ".log");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        handler.setLevel(Level.FINE);
-        LOGGER.addHandler(handler);
-    }
 
     public List<User> getAllUsers() {
         return repository.findAll();
