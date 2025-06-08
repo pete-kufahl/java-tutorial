@@ -15,11 +15,6 @@ public class PatientServer {
 
     public static void main(String... args) {
         LOG.info("Starting HTTP server");
-//        PatientRepository patientRepository = PatientRepository.openPatientRepository("./patients.db");
-//        ResourceConfig resourceConfig = new ResourceConfig().register(new PatientResource(patientRepository));
-//
-//        GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), resourceConfig);
-
         PatientRepository repo = PatientRepository.openPatientRepository("./patients.db");
 
         ResourceConfig config = new ResourceConfig()
@@ -30,6 +25,8 @@ public class PatientServer {
                         bind(repo).to(PatientRepository.class);
                     }
                 });
+
+        LOG.info("Patient count = {}", repo.getAllPatients().size());
 
         GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), config);
 

@@ -16,24 +16,28 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
+import jakarta.inject.Inject;
+
 @Path("/patients")
 public class PatientResource {
     private static final Logger LOG = LoggerFactory.getLogger(PatientResource.class);
 
     private final PatientRepository patientRepository;
 
+    @Inject
     public PatientResource(PatientRepository patientRepository) {
         this.patientRepository = patientRepository;
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Stream<Patient> getPatients() {
+    public List<Patient> getPatients() {
         try {
             return patientRepository
                     .getAllPatients()
                     .stream()
-                    .sorted(Comparator.comparing(Patient::id));
+                    .sorted(Comparator.comparing(Patient::id))
+                    .toList();
         } catch (RepositoryException e) {
             LOG.error("Could not retrieve patients from the database.", e);
             throw new NotFoundException();
