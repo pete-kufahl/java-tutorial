@@ -1,0 +1,5 @@
+rootProject.name = 'healthcare'
+include 'healthcare-repository'
+include 'healthcare-cli'
+include 'healthcare-server'
+
