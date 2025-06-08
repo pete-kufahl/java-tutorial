@@ -1,0 +1,62 @@
+package com.prk.server;
+
+
+import com.prk.repository.PatientRepository;
+import jakarta.ws.rs.core.Response;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+// demonstrate addNotes() with different security strategies
+public class AddNotes {
+
+    public static Response addNotesWhiteList(PatientRepository patientRepository, String id, String notes) {
+        // Define the whitelist of acceptable notes patterns
+        List<String> whitelist = Arrays.asList("Admitted", "Reviewed", "Discharged");
+
+        // Check if the notes contain any of the patterns in the whitelist
+        boolean isValid = whitelist.stream()
+                .anyMatch(pattern -> {
+                    Pattern p = Pattern.compile(pattern);
+                    Matcher m = p.matcher(notes);
+                    return m.find();
+                });
+
+        if (!isValid) {
+            // Return a 400 Bad Request response with an error message
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Invalid input for notes: format of the notes payload is invalid.")
+                    .build();
+        }
+
+        // Proceed with adding notes if validation passes
+        patientRepository.addNotes(id, notes);
+
+        // Return a 200 OK response
+        return Response.ok().build();
+    }
+
+    public static Response addNotesBoundaryChecking(PatientRepository patientRepository, String id, String notes) {
+        // Define the maximum and minimum acceptable lengths for notes
+        int minLength = 10;
+        int maxLength = 500;
+
+        // Check if the notes are within the defined boundaries
+        if (notes.length() < minLength || notes.length() > maxLength) {
+            // Return a 400 Bad Request response if validation fails
+            return Response
+                    .status(Response.Status.BAD_REQUEST)
+                    .entity("The format of the notes payload is invalid. It must be between "
+                            + minLength + " and " + maxLength + " characters.")
+                    .build();
+        }
+
+        // Proceed with adding notes if validation passes
+        patientRepository.addNotes(id, notes);
+
+        // Return a 200 OK response
+        return Response.ok().build();
+    }
+}

@@ -48,29 +48,11 @@ public class PatientResource {
     @Path("/{id}/notes")
     @Consumes(MediaType.TEXT_PLAIN)
     public Response addNotes(@PathParam("id") String id, String notes) {
-        // Define the whitelist of acceptable notes patterns
-        List<String> whitelist = Arrays.asList("Admitted", "Reviewed", "Discharged");
 
-        // Check if the notes contain any of the patterns in the whitelist
-        boolean isValid = whitelist.stream()
-                .anyMatch(pattern -> {
-                    Pattern p = Pattern.compile(pattern);
-                    Matcher m = p.matcher(notes);
-                    return m.find();
-                });
+        // use a whitelist
+        // return AddNotes.addNotesWhiteList(patientRepository, id, notes);
 
-        if (!isValid) {
-            // Return a 400 Bad Request response with an error message
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("Invalid input for notes: format of the notes payload is invalid.")
-                    .build();
-        }
-
-        // Proceed with adding notes if validation passes
-        patientRepository.addNotes(id, notes);
-
-        // Return a 200 OK response
-        return Response.ok().build();
-
+        // use boundary checking
+        return AddNotes.addNotesBoundaryChecking(patientRepository, id, notes);
     }
 }

@@ -1,5 +1,8 @@
 # Input Validation
 filter input so that only well-formed data passes into the application
+### Setup
+* run PatientServer
+* run PatientRetriever to seed the H2 database
 
 ## Whitelisting
 whitelisting allows only pre-approved data/operations
@@ -21,8 +24,15 @@ whitelisting allows only pre-approved data/operations
   * balance security against app performance
 
 ## Boundary Checking
+verify that any index or pointer into memory does not exceed allocated bounds
+* buffer overflows have been exploited to execute arbitrary code
+* Java provides collections that protect against overflows, but relying on built-in mechanisms is insufficient in secure applcations
+  * check length of arrays before accessing them to proactively avoid IndexOutOfBounds exceptions
+  * validate collection size with size()
+  * ensure buffer and string bounds are checked
+* **healthcare-server - PatientResource - addNotes**
+  * define boundaries for user inputs (10 to 500 characters), provides length-based validation
+* simpler than pattern whitelisting, but still a good measure against buffer overflow and injection attacks
 
 
-## Setup
-* run PatientServer
-* run PatientRetriever to seed the H2 database
+
