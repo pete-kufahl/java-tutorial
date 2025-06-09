@@ -30,6 +30,9 @@ dependencies {
     // JSON support for Jersey (Jackson integration)
     implementation 'org.glassfish.jersey.media:jersey-media-json-jackson:3.1.5'
 
+    // for input sanitization
+    implementation 'org.apache.commons:commons-text:1.11.0'
+
     implementation project(':healthcare-repository')
 
     testImplementation platform('org.junit:junit-bom:5.10.0')

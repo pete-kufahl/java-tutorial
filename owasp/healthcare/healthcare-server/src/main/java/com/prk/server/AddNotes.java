@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.text.StringEscapeUtils;
+
 // demonstrate addNotes() with different security strategies
 public class AddNotes {
 
@@ -57,6 +59,29 @@ public class AddNotes {
         patientRepository.addNotes(id, notes);
 
         // Return a 200 OK response
+        return Response.ok().build();
+    }
+
+    public static Response addNotesEscapeCharacters(PatientRepository patientRepository, String id, String notes) {
+        // sanitize the notes to escape special characters
+        String sanitized = StringEscapeUtils.escapeJson(notes);
+
+        patientRepository.addNotes(id, notes);
+        return Response.ok().build();
+    }
+
+    public static Response addNotesNumericValidation(PatientRepository patientRepository, String id, String notes) {
+        // validate that the notes parameter is a valid integer
+        try {
+            // invalid input --> NumberFormatException
+            Integer.parseInt(notes);
+        } catch (NumberFormatException ex) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Notes must be a valid integer.")
+                    .build();
+        }
+        // proceed if validation passes
+        patientRepository.addNotes(id, String.valueOf(Integer.parseInt(notes)));
         return Response.ok().build();
     }
 }

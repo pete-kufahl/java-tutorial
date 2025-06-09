@@ -33,6 +33,44 @@ verify that any index or pointer into memory does not exceed allocated bounds
 * **healthcare-server - PatientResource - addNotes**
   * define boundaries for user inputs (10 to 500 characters), provides length-based validation
 * simpler than pattern whitelisting, but still a good measure against buffer overflow and injection attacks
+* best practices:
+  * perform early, i.e. before rest of application logic
+  * centralize validation, leverage Java APIs that inherently perform these checks
+  * include boundary checks in testing (unit ,fuzz, penetration)
 
+## Character Escaping
+substitute special characters with safe sequences when parsing input
+* *input sanitization*
+* prevents injection attacks where special characters can cause unintended actions in input parsing
+  * SQL injection, XSS, etc.
+* in Java
+  * escape characters in HTML and XML
+  * for SQL statements, use prepared statements or JDBC interface to avoid SQL injection
+  * encode URLs with encoded special characters
+* **healthcare-server - PatientResource - addNotes**
+  * leverage apache.commons.StringEscapeUtils
+    * `escapeJson()` escapes JSON characters, which Jackson already does
+    * HTML escape: for displaying in web apps — `escapeHtml4()`
+    * XML escape: for XML output — `escapeXml10()`
+    * Java escape: for storing in code/logs — `escapeJava()`
+* best practices:
+  * match escaping strategy to specific context
+  * utilize libraries whenever possible for automatic escaping, keep these updated
+  * combine with validation (whitelist and/or boundary checking)
+  * differentiate escaping from encoding appropriately
 
-
+## Numeric Validation
+check numeric input (range, type and format) against specific constraints
+* prevents overflow errors, secures against numeric attacks
+* in Java
+  * prevent type mismatches (integer vs. float)
+  * validate against set ranges (esp. precision and scale in financial applications)
+  * use `BigInteger` and `BigDecimal` to handle large and high-precision numbers
+* **healthcare-server - PatientResource - addNotes**
+  * use `Integer.parseInt()` to enforce that the input is a valid integer
+* best practices:
+  * use libraries for simplified validation (apache commons, hibernate)
+  * implement custom validation logic for specific rules
+  * enhance UX with client-side validation
+  * id fields may require uniqueness
+  * consider internationalization issues

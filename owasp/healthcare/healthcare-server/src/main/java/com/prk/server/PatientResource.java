@@ -53,6 +53,12 @@ public class PatientResource {
         // return AddNotes.addNotesWhiteList(patientRepository, id, notes);
 
         // use boundary checking
-        return AddNotes.addNotesBoundaryChecking(patientRepository, id, notes);
+        // return AddNotes.addNotesBoundaryChecking(patientRepository, id, notes);
+
+        // use character escaping
+        // return AddNotes.addNotesEscapeCharacters(patientRepository, id, notes);
+
+        // notes can only be a valid number
+        return AddNotes.addNotesNumericValidation(patientRepository, id, notes);
     }
 }
