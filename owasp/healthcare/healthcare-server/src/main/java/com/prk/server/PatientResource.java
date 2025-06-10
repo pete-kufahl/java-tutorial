@@ -71,6 +71,12 @@ public class PatientResource {
         // return AddNotes.addNotesFilterPathAlterationChars(patientRepository, id, notes);
 
         // notes must have UTF-8 characters only
-        return AddNotes.addNotesSanitizeUTF8(patientRepository, id, notes);
+        // return AddNotes.addNotesSanitizeUTF8(patientRepository, id, notes);
+
+        /* this method is used in conjunction with output encoding
+         *  to protect against XSS attacks
+         */
+        // create a Policy sanitizer
+        return AddNotes.usePolicySanitizer(patientRepository, id, notes);
     }
 }

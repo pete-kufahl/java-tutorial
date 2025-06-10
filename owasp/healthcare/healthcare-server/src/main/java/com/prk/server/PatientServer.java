@@ -24,11 +24,11 @@ public class PatientServer {
                     protected void configure() {
                         bind(repo).to(PatientRepository.class);
                     }
-                });
+                })
+                .register(CorsFilter.class);
 
         LOG.info("Patient count = {}", repo.getAllPatients().size());
 
         GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), config);
-
     }
 }

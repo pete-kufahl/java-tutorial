@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.text.StringEscapeUtils;
 
+import org.owasp.html.PolicyFactory;
+import org.owasp.html.Sanitizers;
+
 // demonstrate addNotes() with different security strategies
 public class AddNotes {
 
@@ -118,6 +121,18 @@ public class AddNotes {
             }
         }
         patientRepository.addNotes(id, sanitizedNotes.toString());
+        return Response.ok().build();
+    }
+
+    public static Response usePolicySanitizer(PatientRepository patientRepository, String id, String notes) {
+        // create a sanitizer policy
+        // owasp sanitizer recommended as safer than regex-based sanitization
+        PolicyFactory policy = Sanitizers.FORMATTING
+                .and(Sanitizers.LINKS)          // allows simple links
+                .and(Sanitizers.BLOCKS);        // allows blocks, like <p>
+        // apply to notes
+        String sanitizedNotes = policy.sanitize(notes);
+        patientRepository.addNotes(id, sanitizedNotes);
         return Response.ok().build();
     }
 }

@@ -32,6 +32,8 @@ dependencies {
 
     // for input sanitization
     implementation 'org.apache.commons:commons-text:1.11.0'
+    implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20211018.1'
+
 
     implementation project(':healthcare-repository')
 
