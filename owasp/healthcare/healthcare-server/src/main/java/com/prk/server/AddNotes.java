@@ -103,4 +103,21 @@ public class AddNotes {
         patientRepository.addNotes(id, filteredNotes);
         return Response.ok().build();
     }
+
+    public static Response addNotesSanitizeUTF8(PatientRepository patientRepository, String id, String notes) {
+        // enforce a range of character values (ASCII range)
+        StringBuilder sanitizedNotes = new StringBuilder();
+        for (char ch : notes.toCharArray()) {
+            // also disallows emojis, apparently
+            if (ch <= 127) {
+                sanitizedNotes.append(ch);
+            } else {
+                return Response.status(Response.Status.BAD_REQUEST)
+                        .entity("Non-UTF-8 character detected.")
+                        .build();
+            }
+        }
+        patientRepository.addNotes(id, sanitizedNotes.toString());
+        return Response.ok().build();
+    }
 }

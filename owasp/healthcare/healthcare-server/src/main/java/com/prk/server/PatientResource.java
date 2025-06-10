@@ -48,7 +48,10 @@ public class PatientResource {
     @Path("/{id}/notes")
     @Consumes(MediaType.TEXT_PLAIN)
     public Response addNotes(@PathParam("id") String id, String notes) {
-
+        /*
+         *  the following methods each use one defensive technique for input validation, but they
+         *  can be combined into a single robust defense against various attacks
+         */
         // use a whitelist
         // return AddNotes.addNotesWhiteList(patientRepository, id, notes);
 
@@ -65,6 +68,9 @@ public class PatientResource {
         // return AddNotes.addNotesNullBytesChecking(patientRepository, id, notes);
 
         // notes cannot have path-alteration characters
-        return AddNotes.addNotesFilterPathAlterationChars(patientRepository, id, notes);
+        // return AddNotes.addNotesFilterPathAlterationChars(patientRepository, id, notes);
+
+        // notes must have UTF-8 characters only
+        return AddNotes.addNotesSanitizeUTF8(patientRepository, id, notes);
     }
 }

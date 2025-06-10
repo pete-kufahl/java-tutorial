@@ -86,16 +86,23 @@ null bytes can be used by attackers to bypass security measures, should be expli
   * use `String.contains("\\0")`
 * monitor Java-native code interoperability
 
-### New Line Characters
+### Newline Characters
 newline characters can be leveraged in certain exploits, e.g. log injection, HTTP response splitting
 * newlines can disrupt text-based formats
   * *log forging* with malicious entries
   * *HTTP response splitting* to inject unauthorized headers, etc.
 
-### Path Alteration Handlers
+### Path Alteration Characters
 path-alteration characters (`..`) can be exploited for unauthorized access into files or directories
 * applications that construct filepaths from user input are particularly vulnerable
 * in Java
   * use Java's `File.getCanonicalPath` method
   * define whitelists for allowed paths
   * sanitize user inputs for `..`, `/` and `\`, enforce least privilege access
+
+### Checking for Extended UTF-8 Attacks
+*UTF-8* is a variable-width character encoding system that can encode all 1,000,000+ points of valid UniCode with 1-4 bytes
+* attacks use overlong or invisible characters that are treated differently by different components of an application
+  * can bypass validation filters for injection attacks
+* to counter, enforce a legal range of character code values
+* test regular expressions against non-UTF-8 inputs
