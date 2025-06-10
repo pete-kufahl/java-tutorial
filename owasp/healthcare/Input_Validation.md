@@ -74,3 +74,28 @@ check numeric input (range, type and format) against specific constraints
   * enhance UX with client-side validation
   * id fields may require uniqueness
   * consider internationalization issues
+
+## Checking for Other Potentially Dangerous Characters
+demo with **healthcare-server - PatientResource - addNotes**
+### Null Bytes
+null bytes can be used by attackers to bypass security measures, should be explicitly checked against
+* Java interaction with C/C++ poses risks: C considers the string termination character a null byte
+* in Java
+  * validate input data (bound for eternal systems or the filesystem) to exclude null bytes
+  * ensure boundary checks on data buffers
+  * use `String.contains("\\0")`
+* monitor Java-native code interoperability
+
+### New Line Characters
+newline characters can be leveraged in certain exploits, e.g. log injection, HTTP response splitting
+* newlines can disrupt text-based formats
+  * *log forging* with malicious entries
+  * *HTTP response splitting* to inject unauthorized headers, etc.
+
+### Path Alteration Handlers
+path-alteration characters (`..`) can be exploited for unauthorized access into files or directories
+* applications that construct filepaths from user input are particularly vulnerable
+* in Java
+  * use Java's `File.getCanonicalPath` method
+  * define whitelists for allowed paths
+  * sanitize user inputs for `..`, `/` and `\`, enforce least privilege access

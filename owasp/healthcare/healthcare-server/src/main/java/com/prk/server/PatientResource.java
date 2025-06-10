@@ -59,6 +59,12 @@ public class PatientResource {
         // return AddNotes.addNotesEscapeCharacters(patientRepository, id, notes);
 
         // notes can only be a valid number
-        return AddNotes.addNotesNumericValidation(patientRepository, id, notes);
+        // return AddNotes.addNotesNumericValidation(patientRepository, id, notes);
+
+        // notes cannot contain null bytes
+        // return AddNotes.addNotesNullBytesChecking(patientRepository, id, notes);
+
+        // notes cannot have path-alteration characters
+        return AddNotes.addNotesFilterPathAlterationChars(patientRepository, id, notes);
     }
 }

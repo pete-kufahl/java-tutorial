@@ -84,4 +84,23 @@ public class AddNotes {
         patientRepository.addNotes(id, String.valueOf(Integer.parseInt(notes)));
         return Response.ok().build();
     }
+
+    public static Response addNotesNullBytesChecking(PatientRepository patientRepository, String id, String notes) {
+        // check for null bytes in the notes
+        if (notes.contains("\\0")) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity("Invalid input: notes contain NULL bytes")
+                    .build();
+        }
+        // proceed if validation passes
+        patientRepository.addNotes(id, notes);
+        return Response.ok().build();
+    }
+
+    public static Response addNotesFilterPathAlterationChars(PatientRepository patientRepository, String id, String notes) {
+        // filter out path-alteration characters (this one is pretty blunt)
+        String filteredNotes = notes.replaceAll("[.\\\\/]", "");
+        patientRepository.addNotes(id, filteredNotes);
+        return Response.ok().build();
+    }
 }
