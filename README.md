@@ -27,3 +27,6 @@ tutorials for working with and integrating various JSON APIs
 
 ## logging
 tutorial api backend for basic logging
+
+## owasp
+tutorial project describing defensive measures against some of the OWASP top 10 security threats
