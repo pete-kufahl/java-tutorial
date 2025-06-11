@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.prk'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // SLF4J API and Simple logger implementation
+    implementation 'org.slf4j:slf4j-api:2.0.13'
+    runtimeOnly 'org.slf4j:slf4j-simple:2.0.13'
+
+    // Jackson JSON Binding
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.17.1'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.17.1'
+
+    // bcrypt password encoder
+    implementation 'org.springframework.security:spring-security-core:6.2.3'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.78' // wrapped
+
+    implementation project(':healthcare-repository')
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
