@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 
-public class SpringSCryptExample {
-    private static final Logger LOG = LoggerFactory.getLogger(SpringSCryptExample.class);
+public class SpringSCrypt {
+    private static final Logger LOG = LoggerFactory.getLogger(SpringSCrypt.class);
 
     public static void main(String[] args) {
         String password = "examplePassword";

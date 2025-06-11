@@ -42,3 +42,4 @@ require regular password updates
 * * **healthcare-cli - PasswordHasher - isPasswordComplex** uses a regular expression to enforce password complexity
 * complex passwords made by intensive hash functions help throw off timing attacks
   * **healthcare-cli - Pbkdf2Hasher** demos the PBKDF2 algorithm from javax.crypto api
+  * **healthcare-cli - SpringSCrypt** demos the heavier SCrypt encoder; the Spring library just wraps the BouncyCastle class with an easier interface
