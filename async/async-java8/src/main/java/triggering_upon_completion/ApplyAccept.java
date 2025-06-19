@@ -5,16 +5,14 @@ import triggering_upon_completion.model.User;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class ComposeAccept {
+public class ApplyAccept {
     // 1. supplyIDs (async, use CF.supplyAsync())
-    // 2. fetchUsers (async, use cf.thenCompose(), which works like a flatMap operation)
+    // 2. fetchUsers (sync, use cf.thenApply())
     // 3. displayer (sync, use cf.thenAccept())
     public static void main(String[] args) {
 
@@ -23,17 +21,13 @@ public class ComposeAccept {
             return Arrays.asList(1L, 2L, 3L);
         };
 
-        // wrap this long-running operation in a CF
         // input: list of Long (ids)
         // output: list of User
-        Function<List<Long>, CompletableFuture<List<User>>> fetchUsers = ids -> {
+        Function<List<Long>, List<User>> fetchUsers = ids -> {
             sleep(300);
-            Supplier<List<User>> userSupplier = () -> {
-                return ids.stream()
-                        .map(User::new)
-                        .toList();
-            };
-            return CompletableFuture.supplyAsync(userSupplier);
+            return ids.stream()
+                    .map(User::new)
+                    .toList();
         };
 
         Consumer<List<User>> displayer = users -> {
@@ -41,7 +35,7 @@ public class ComposeAccept {
         };
 
         CompletableFuture<List<Long>> future = CompletableFuture.supplyAsync(supplyIDs);
-        future.thenCompose(fetchUsers)
+        future.thenApply(fetchUsers)
                 .thenAccept(displayer);
 
         // invoke join() to make the main thread wait for the future to complete
