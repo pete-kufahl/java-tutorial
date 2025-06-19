@@ -12,10 +12,8 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public class ChainComposeAccept {
+public class ComposeAccept {
     public static void main(String[] args) {
-        ExecutorService executor1 = Executors.newSingleThreadExecutor();
-        ExecutorService executor2 = Executors.newSingleThreadExecutor();
 
         Supplier<List<Long>> supplyIDs = () -> {
             sleep(200);
@@ -26,27 +24,24 @@ public class ChainComposeAccept {
         // output: list of User
         Function<List<Long>, CompletableFuture<List<User>>> fetchUsers = ids -> {
             sleep(300);
-            System.out.println("function is currently running in " + Thread.currentThread().getName());
             Supplier<List<User>> userSupplier = () -> {
-                System.out.println("currently running in " + Thread.currentThread().getName());
                 return ids.stream()
                         .map(User::new)
                         .toList();
             };
-            return CompletableFuture.supplyAsync(userSupplier, executor2);
+            return CompletableFuture.supplyAsync(userSupplier);
         };
 
         Consumer<List<User>> displayer = users -> {
-            System.out.println("running in " + Thread.currentThread().getName());
             users.forEach(System.out::println);
         };
 
         CompletableFuture<List<Long>> future = CompletableFuture.supplyAsync(supplyIDs);
-        future.thenComposeAsync(fetchUsers, executor2)
-                .thenAcceptAsync(displayer, executor1);
-        sleep(1000);
-        executor1.shutdown();
-        executor2.shutdown();
+        future.thenCompose(fetchUsers)
+                .thenAccept(displayer);
+
+        // invoke join() to make the main thread wait for the future to complete
+        System.out.println(future.join());
     }
 
     private static void sleep(int timeout) {
