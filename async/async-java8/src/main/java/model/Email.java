@@ -1,11 +1,12 @@
-package triggering_upon_completion.model;
+package model;
 
-public class User {
+public class Email {
     private long id;
 
-    public User() {}
+    public Email() {
+    }
 
-    public User (long id) {
+    public Email(long id) {
         this.id = id;
     }
 
@@ -19,6 +20,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [" + id + "]";
+        return "Email {" + id + '}';
     }
 }

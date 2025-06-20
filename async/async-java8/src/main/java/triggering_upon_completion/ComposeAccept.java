@@ -1,12 +1,10 @@
 package triggering_upon_completion;
 
-import triggering_upon_completion.model.User;
+import model.User;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;

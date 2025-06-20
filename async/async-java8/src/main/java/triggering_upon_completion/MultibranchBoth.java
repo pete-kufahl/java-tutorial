@@ -1,7 +1,7 @@
 package triggering_upon_completion;
 
-import triggering_upon_completion.model.Email;
-import triggering_upon_completion.model.User;
+import model.Email;
+import model.User;
 
 import java.util.Arrays;
 import java.util.List;
