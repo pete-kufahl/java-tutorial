@@ -1,0 +1,5 @@
+rootProject.name = 'jaxws-demo'
+include 'shop-service', 'shop-client'
+include 'shop-service'
+include 'shop-client'
+

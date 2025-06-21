@@ -1,0 +1,19 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'com.example.client.ClientApp'
+}
+
+dependencies {
+    implementation 'jakarta.xml.ws:jakarta.xml.ws-api:3.0.0'
+    implementation 'com.sun.xml.ws:jaxws-rt:3.0.2' // For JAX-WS runtime
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
