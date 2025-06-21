@@ -1,19 +1,61 @@
 plugins {
+    id 'java'
     id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    jaxb
+}
+
+dependencies {
+    implementation 'com.sun.xml.ws:jaxws-rt:3.0.2'                  // JAX-WS runtime
+    implementation 'jakarta.jws:jakarta.jws-api:3.0.0'               // jakarta.jws annotations
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'     // JAXB annotations
+    implementation 'jakarta.xml.ws:jakarta.xml.ws-api:3.0.0'         // JAX-WS APIs
+    jaxb 'com.sun.xml.ws:jaxws-tools:3.0.2'                          // wsimport tool
+}
+
+def generatedSourcesDir = layout.buildDirectory.dir("generated-sources/wsdl")
+
+tasks.register("generateSoapClient", JavaExec) {
+    description = "Generates SOAP client classes from WSDL"
+    group = "wsdl"
+
+    classpath = configurations.jaxb
+    mainClass = "com.sun.tools.ws.WsImport"
+
+    doFirst {
+        def outDir = generatedSourcesDir.get().asFile
+        if (!outDir.exists()) {
+            println "Creating directory: $outDir"
+            outDir.mkdirs()
+        }
+    }
+
+    args = [
+            "-keep",
+            "-verbose",
+            "-d", generatedSourcesDir.get().asFile.absolutePath,
+            "-p", "com.example.client",
+            "http://localhost:8080/shop-service-1.0.0/OrderService?wsdl"
+    ]
+}
+
+compileJava {
+    dependsOn generateSoapClient
+    source generatedSourcesDir
 }
 
 application {
     mainClass = 'com.example.client.ClientApp'
 }
 
-dependencies {
-    implementation 'jakarta.xml.ws:jakarta.xml.ws-api:3.0.0'
-    implementation 'com.sun.xml.ws:jaxws-rt:3.0.2' // For JAX-WS runtime
-
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-}
-
-test {
-    useJUnitPlatform()
+tasks.named("clean") {
+    doFirst {
+        delete generatedSourcesDir
+    }
 }
