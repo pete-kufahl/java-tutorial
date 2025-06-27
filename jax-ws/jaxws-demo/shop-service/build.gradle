@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+dependencies {
+    providedCompile 'jakarta.platform:jakarta.jakartaee-web-api:10.0.0'
+
+    // @WebService, @WebMethod, etc.
+    providedCompile 'jakarta.xml.ws:jakarta.xml.ws-api:3.0.0'
+
+    // JAXB serialization
+    providedCompile 'jakarta.xml.bind:jakarta.xml.bind-api:4.0.0'
+
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}
+

@@ -30,3 +30,6 @@ tutorial api backend for basic logging
 
 ## owasp
 tutorial project describing defensive measures against some of the OWASP top 10 security threats
+
+## jax-ws
+tutorial projects for SOAP webservices, using Jakarta EE
