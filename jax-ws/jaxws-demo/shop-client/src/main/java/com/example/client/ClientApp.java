@@ -1,8 +1,14 @@
 package com.example.client;
 
+import java.util.List;
+
 public class ClientApp {
     public static void main(String[] args) {
-        // The generated service class (based on WSDL)
+
+        test2();
+    }
+
+    private static void test1() {
         // Create the service instance
         OrderService_Service service = new OrderService_Service();
 
@@ -14,5 +20,24 @@ public class ClientApp {
 
         // Print the result
         System.out.println("Server responded: " + result);
+    }
+
+    private static void test2() {
+        OrderService_Service service = new OrderService_Service();// generated class
+        OrderService port = service.getOrderServicePort();
+
+        // Get menu
+        List<MenuItem> menu = port.getMenu();
+        menu.forEach(item -> System.out.println(item.getName() + ": $" + item.getPrice()));
+
+        // Place order
+        String orderId = port.placeOrder("Coffee", 2);
+        port.addItemToOrder(orderId, "Muffin", 1);
+
+        double subtotal = port.getOrderTotal(orderId);
+        double total = port.completeOrder(orderId, 0.07, 2.0);
+
+        System.out.println("Subtotal: $" + subtotal);
+        System.out.println("Total (with tax + tip): $" + total);
     }
 }
